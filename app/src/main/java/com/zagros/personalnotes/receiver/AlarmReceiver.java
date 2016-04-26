@@ -11,6 +11,7 @@ import android.support.v4.app.TaskStackBuilder;
 
 import com.zagros.personalnotes.R;
 import com.zagros.personalnotes.data.model.Note;
+import com.zagros.personalnotes.ui.activity.NoteDetailActivity;
 import com.zagros.personalnotes.utils.AppConstant;
 
 public class AlarmReceiver extends BroadcastReceiver {

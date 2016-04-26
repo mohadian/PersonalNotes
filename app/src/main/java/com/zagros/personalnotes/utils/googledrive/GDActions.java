@@ -299,7 +299,8 @@ final public class GDActions {
     }
 
     public final static class GF {
-        String titl, id;
+        String titl;
+        public String id;
 
         GF(String t, String i) {
             titl = t;

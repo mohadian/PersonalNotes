@@ -1,11 +1,19 @@
 package com.zagros.personalnotes.data.model.provider;
 
 import android.content.ContentProvider;
+import android.content.ContentValues;
 import android.content.UriMatcher;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.net.Uri;
+import android.provider.BaseColumns;
+import android.text.TextUtils;
 
 import com.zagros.personalnotes.contract.ArchivesContract;
 import com.zagros.personalnotes.contract.NotesContract;
 import com.zagros.personalnotes.contract.TrashContract;
+import com.zagros.personalnotes.data.AppDatabase;
 
 public class AppProvider extends ContentProvider {
     protected AppDatabase mOpenHelper;

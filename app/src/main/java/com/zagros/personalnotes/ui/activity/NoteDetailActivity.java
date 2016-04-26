@@ -2,7 +2,6 @@ package com.zagros.personalnotes.ui.activity;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
@@ -250,7 +249,7 @@ public class NoteDetailActivity extends BaseActivity
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mNoteCustomList.addNewCheckBox();
+                mNoteCustomList.addNewCheckbox();
             }
         });
     }
@@ -352,7 +351,7 @@ public class NoteDetailActivity extends BaseActivity
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mNoteCustomList.addNewCheckBox();
+                mNoteCustomList.addNewCheckbox();
             }
         });
     }

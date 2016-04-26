@@ -13,7 +13,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "personalnotes.db";
     private static final int DATABASE_VERSION = 1;
 
-    interface Tables {
+    public interface Tables {
         String NOTES = "notes";
         String ARCHIVES ="archives";
         String TRASH = "trash";
