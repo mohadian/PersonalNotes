@@ -3,6 +3,8 @@ package com.zagros.personalnotes.contract;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+import com.zagros.personalnotes.utils.AppConstant;
+
 public class NotesContract {
     public interface NotesColumns {
         String NOTES_TITLE = "notes_title";
@@ -16,7 +18,7 @@ public class NotesContract {
 
     public static final String CONTENT_AUTHORITY = "com.zagros.personalnotes.provider";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
-    private static final String PATH_NOTES = "notes";
+    private static final String PATH_NOTES = AppConstant.TABLE_NOTES;
     public static final Uri URI_TABLE = BASE_CONTENT_URI.buildUpon().appendEncodedPath(PATH_NOTES).build();
 
     public static class Notes implements  NotesColumns, BaseColumns {

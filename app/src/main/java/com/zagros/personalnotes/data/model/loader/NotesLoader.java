@@ -15,9 +15,6 @@ import com.zagros.personalnotes.utils.AppConstant;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by dev on 6/10/15.
- */
 public class NotesLoader extends AsyncTaskLoader<List<Note>> {
 
     private List<Note> mNotes;
@@ -75,7 +72,7 @@ public class NotesLoader extends AsyncTaskLoader<List<Note>> {
                         }
 
                     } else if(mType == BaseActivity.REMINDERS) {
-                        if(time.equals(AppConstant.NO_TIME)) {
+                        if(!time.equals(AppConstant.NO_TIME)) {
                             Note note = new Note(title, description, date, time, _id, imageSelection, type);
                             if(!imagePath.equals(AppConstant.NO_IMAGE)) {
                                 if(imageSelection == AppConstant.DEVICE_SELECTION) {
