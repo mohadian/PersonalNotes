@@ -61,10 +61,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteHolder> 
         holder.mDate.setText(mNotes.get(position).getDate() + " " + mNotes.get(position).getTime());
 
         // Display an image, but only if we have one to display.
-        if (mNotes.get(position).getBitmap() != null) {
-            holder.mImage.setImageBitmap(mNotes.get(position).getBitmap());
-            holder.mImage.setVisibility(View.VISIBLE);
-        } else if (mNotes.get(position).getImagePath() == null || mNotes.get(position).getImagePath().equals(AppConstant.NO_IMAGE)) {
+//        if (mNotes.get(position).getBitmap() != null) {
+//            holder.mImage.setImageBitmap(mNotes.get(position).getBitmap());
+//            holder.mImage.setVisibility(View.VISIBLE);
+//        } else
+        if (mNotes.get(position).getImagePath() == null || mNotes.get(position).getImagePath().equals(AppConstant.NO_IMAGE)) {
             // No image, so hide.
             holder.mImage.setVisibility(View.GONE);
         } else {

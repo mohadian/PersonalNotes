@@ -158,9 +158,10 @@ public class NotesActivity extends BaseActivity implements
                             ArrayList<GDActions.GF> gfs = GDActions.search(AppSharedPreferences.getGoogleDriveResourceId(getApplicationContext()),
                                     aNote.getImagePath(), GDUT.MIME_JPEG);
                             if(gfs.size()>0) {
-                                byte[] imageBytes = GDActions.read(gfs.get(0).id, 0);
-                                Bitmap bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                                aNote.setBitmap(bmp);
+//                                TODO cache the image
+                                //byte[] imageBytes = GDActions.read(gfs.get(0).id, 0);
+                                //Bitmap bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                                //aNote.setBitmap(bmp);
                                 mIsImageNotFound = false;
                                 mNotesAdapter.setData(mNotes);
                                 runOnUiThread(new Runnable() {
@@ -170,7 +171,8 @@ public class NotesActivity extends BaseActivity implements
                                     }
                                 });
                             } else {
-                                aNote.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_loading));
+//                                TODO cache the image
+                                //aNote.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_loading));
                                 mIsImageNotFound = true;
                                 try {
                                     Thread.sleep(500);
@@ -195,7 +197,8 @@ public class NotesActivity extends BaseActivity implements
                                     aNote.getImagePath());
                             if(drawable != null) {
                                 Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-                                aNote.setBitmap(bitmap);
+//                                TODO cache the image
+                                //aNote.setBitmap(bitmap);
                             }
                             if(!mIsImageNotFound) {
                                 mNotesAdapter.setData(mNotes);
@@ -405,7 +408,7 @@ public class NotesActivity extends BaseActivity implements
 
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.home_list);
         int isList = linearLayout.getVisibility();
-        String listDescription = "";
+        String listDescription;
         if(isList == View.VISIBLE) {
             NoteCustomList noteCustomList = (NoteCustomList) linearLayout.getChildAt(0);
             listDescription = noteCustomList.getLists();

@@ -11,9 +11,6 @@ public class Note {
     private boolean mHasNoImage = false;
     private int mStorageSelection;
 
-    // Contains the image (if any) attached to this note
-    private Bitmap mBitmap;
-
     public Note(String mTitle, String mDescription, String mDate, String mTime, int mId, int mStorageSelection, String mType) {
         this.mTitle = mTitle;
         this.mDescription = mDescription;
@@ -66,14 +63,6 @@ public class Note {
 
     public void setBitmap(String path) {
         setImagePath(path);
-        this.mBitmap = BitmapFactory.decodeFile(path);
-    }
-
-    public void setBitmap(Bitmap bitmap) {
-        this.mBitmap = bitmap;
-    }
-    public Bitmap getBitmap() {
-        return mBitmap;
     }
 
     public String getTitle() {

@@ -5,7 +5,6 @@ import android.provider.BaseColumns;
 
 public class TrashContract {
     public interface TrashColumns {
-        String TRASH_ID = "_ID";
         String TRASH_TITLE = "deleted_title";
         String TRASH_DESCRIPTION = "deleted_description";
         String TRASH_DATE_TIME = "deleted_date_time";
@@ -15,8 +14,6 @@ public class TrashContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     private static final String PATH_DELETED = "deleted";
     public static final Uri URI_TABLE = BASE_CONTENT_URI.buildUpon().appendEncodedPath(PATH_DELETED).build();
-
-
 
     public static class Trash implements TrashColumns, BaseColumns {
 

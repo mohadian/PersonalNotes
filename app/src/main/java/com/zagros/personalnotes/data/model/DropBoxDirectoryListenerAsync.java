@@ -79,8 +79,6 @@ public class DropBoxDirectoryListenerAsync extends AsyncTask<Void, Long, Boolean
         error.show();
     }
 
-
-
     public interface OnLoadFinished {
         void onLoadFinished(List<String> values);
     }

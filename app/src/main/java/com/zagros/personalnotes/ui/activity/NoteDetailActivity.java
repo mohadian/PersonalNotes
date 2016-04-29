@@ -142,7 +142,7 @@ public class NoteDetailActivity extends BaseActivity
                 NotesContract.NotesColumns.NOTES_TIME};
         // Query database - check parameters to return only partial records.
         Uri r = NotesContract.URI_TABLE;
-        String selection = NotesContract.NotesColumns.NOTE_ID + " = " + id;
+        String selection = BaseColumns._ID + " = " + id;
         Cursor cursor = getContentResolver().query(r, projection, selection, null, null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
@@ -877,7 +877,7 @@ public class NoteDetailActivity extends BaseActivity
     private void updateNote(ContentValues values) {
         ContentResolver contentResolver = getContentResolver();
         Uri uri = Uri.parse(NotesContract.BASE_CONTENT_URI + "/notes");
-        String selection = NotesContract.NotesColumns.NOTE_ID + " = " + mId;
+        String selection = BaseColumns._ID + " = " + mId;
         contentResolver.update(uri, values, selection, null);
     }
 

@@ -5,7 +5,6 @@ import android.provider.BaseColumns;
 
 public class NotesContract {
     public interface NotesColumns {
-        String NOTE_ID = "_ID";
         String NOTES_TITLE = "notes_title";
         String NOTES_DESCRIPTION = "notes_description";
         String NOTES_DATE = "note_date";

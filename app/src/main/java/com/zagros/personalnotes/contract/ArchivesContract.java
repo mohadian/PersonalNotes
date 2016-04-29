@@ -3,9 +3,6 @@ package com.zagros.personalnotes.contract;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-/**
- * Created by dev on 7/06/15.
- */
 public class ArchivesContract {
     public interface ArchivesColumns {
         String ARCHIVES_TITLE = "archives_title";
@@ -19,7 +16,6 @@ public class ArchivesContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     private static final String PATH_ARCHIVES = "archives";
     public static final Uri URI_TABLE = BASE_CONTENT_URI.buildUpon().appendEncodedPath(PATH_ARCHIVES).build();
-
 
     public static class Archives implements ArchivesColumns, BaseColumns {
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd." + CONTENT_AUTHORITY + ".archives";

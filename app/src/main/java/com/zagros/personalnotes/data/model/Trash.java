@@ -1,8 +1,5 @@
 package com.zagros.personalnotes.data.model;
 
-/**
- * Created by dev on 4/05/15.
- */
 public class Trash {
     private int id;
     private String title, description, dateTime;

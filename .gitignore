@@ -1,5 +1,6 @@
 *.iml
 .gradle
+.gradlew.bat
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
@@ -7,3 +8,7 @@
 /build
 /captures
 /gradle
+.Trashes
+ehthumbs.db
+Thumbs.db
+.signing/

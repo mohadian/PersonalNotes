@@ -8,19 +8,19 @@ import android.provider.BaseColumns;
 import com.zagros.personalnotes.contract.ArchivesContract;
 import com.zagros.personalnotes.contract.NotesContract;
 import com.zagros.personalnotes.contract.TrashContract;
+import com.zagros.personalnotes.utils.AppConstant;
 
 public class AppDatabase extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "personalnotes.db";
     private static final int DATABASE_VERSION = 1;
 
     public interface Tables {
-        String NOTES = "notes";
-        String ARCHIVES ="archives";
-        String TRASH = "trash";
+        String NOTES = AppConstant.TABLE_NOTES;
+        String ARCHIVES = AppConstant.TABLE_ARCHIVES;
+        String TRASH = AppConstant.TABLE_TRASH;
     }
 
     public AppDatabase(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, AppConstant.DATABASE_NAME, null, DATABASE_VERSION);
     }
 
 
@@ -69,7 +69,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     }
 
     public static void deleteDatabase(Context context) {
-        context.deleteDatabase(DATABASE_NAME);
+        context.deleteDatabase(AppConstant.DATABASE_NAME);
     }
 
     public void emptyTrash(){

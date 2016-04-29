@@ -141,7 +141,7 @@ public class AppProvider extends ContentProvider {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final int match = sUriMatcher.match(uri);
 
-        String selectionCriteria = selection;
+        String selectionCriteria;
         switch (match) {
             case NOTES:
                 return db.update(AppDatabase.Tables.NOTES, values, selection, selectionArgs);
@@ -211,18 +211,3 @@ public class AppProvider extends ContentProvider {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
