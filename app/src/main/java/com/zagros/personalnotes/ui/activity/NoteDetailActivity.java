@@ -125,7 +125,6 @@ public class NoteDetailActivity extends BaseActivity
                 initializeComponents(LIST);
             }
             setValues(mId);
-            mStorageSelection.setEnabled(false);
         }
         if (getIntent().getStringExtra(AppConstant.REMINDER) != null) {
             Note aNote = new Note(getIntent().getStringExtra(AppConstant.REMINDER));
@@ -133,7 +132,6 @@ public class NoteDetailActivity extends BaseActivity
             mIsNotificationMode = true;
             setValues(aNote);
             removeFromReminder(aNote);
-            mStorageSelection.setEnabled(false);
         }
     }
 
@@ -291,41 +289,45 @@ public class NoteDetailActivity extends BaseActivity
         mStorageSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(NoteDetailActivity.this, v);
-                MenuInflater inflater = popupMenu.getMenuInflater();
-                inflater.inflate(R.menu.actions_image_selection, popupMenu.getMenu());
-                popupMenu.show();
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (menuItem.getItemId() == R.id.action_device) {
-                            updateStorageSelection(null, R.drawable.ic_content_save_grey600_36dp, AppConstant.DEVICE_SELECTION);
-                        } else if (menuItem.getItemId() == R.id.action_google_drive) {
-                            if (!AppSharedPreferences.isGoogleDriveAuthenticated(getApplicationContext())) {
-                                startActivity(new Intent(NoteDetailActivity.this, GoogleDriveSelectionActivity.class));
-                                finish();
-                            } else {
-                                updateStorageSelection(null, R.drawable.ic_google_drive_grey600_36dp, AppConstant.GOOGLE_DRIVE_SELECTION);
+                if (mIsEditing) {
+                    saveNote();
+                } else {
+                    PopupMenu popupMenu = new PopupMenu(NoteDetailActivity.this, v);
+                    MenuInflater inflater = popupMenu.getMenuInflater();
+                    inflater.inflate(R.menu.actions_image_selection, popupMenu.getMenu());
+                    popupMenu.show();
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            if (menuItem.getItemId() == R.id.action_device) {
+                                updateStorageSelection(null, R.drawable.ic_content_save_grey600_36dp, AppConstant.DEVICE_SELECTION);
+                            } else if (menuItem.getItemId() == R.id.action_google_drive) {
+                                if (!AppSharedPreferences.isGoogleDriveAuthenticated(getApplicationContext())) {
+                                    startActivity(new Intent(NoteDetailActivity.this, GoogleDriveSelectionActivity.class));
+                                    finish();
+                                } else {
+                                    updateStorageSelection(null, R.drawable.ic_google_drive_grey600_36dp, AppConstant.GOOGLE_DRIVE_SELECTION);
+                                }
+                            } else if (menuItem.getItemId() == R.id.action_dropbox) {
+                                AppSharedPreferences.setPersonalNotesPreference(getApplicationContext(), AppConstant.DROP_BOX_SELECTION);
+                                if (!AppSharedPreferences.isDropBoxAuthenticated(getApplicationContext())) {
+                                    startActivity(new Intent(NoteDetailActivity.this, DropBoxPickerActivity.class));
+                                    finish();
+                                } else {
+                                    updateStorageSelection(null, R.drawable.ic_dropbox_grey600_36dp, AppConstant.DROP_BOX_SELECTION);
+                                }
                             }
-                        } else if (menuItem.getItemId() == R.id.action_dropbox) {
-                            AppSharedPreferences.setPersonalNotesPreference(getApplicationContext(), AppConstant.DROP_BOX_SELECTION);
-                            if (!AppSharedPreferences.isDropBoxAuthenticated(getApplicationContext())) {
-                                startActivity(new Intent(NoteDetailActivity.this, DropBoxPickerActivity.class));
-                                finish();
-                            } else {
-                                updateStorageSelection(null, R.drawable.ic_dropbox_grey600_36dp, AppConstant.DROP_BOX_SELECTION);
+
+                            if (mBundle != null) {
+                                mCameraFileName = mBundle.getString("mCameraFileName");
                             }
-                        }
+                            AndroidAuthSession session = DropBoxActions.buildSession(getApplicationContext());
+                            mApi = new DropboxAPI<>(session);
 
-                        if (mBundle != null) {
-                            mCameraFileName = mBundle.getString("mCameraFileName");
+                            return false;
                         }
-                        AndroidAuthSession session = DropBoxActions.buildSession(getApplicationContext());
-                        mApi = new DropboxAPI<>(session);
-
-                        return false;
-                    }
-                });
+                    });
+                }
             }
         });
 
