@@ -50,7 +50,7 @@
             android:layout_toStartOf="@id/log_out_drop_box_label"
             android:layout_marginEnd="@dimen/card_view_margin"
             android:layout_marginRight="@dimen/card_view_margin"
-            android:src="@android:drawable/ic_menu_save"
+            android:src="@drawable/ic_content_save_grey600_36dp"
             android:id="@+id/selection_directory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -61,7 +61,7 @@
             android:layout_toStartOf="@id/selection_directory"
             android:layout_marginEnd="@dimen/card_view_margin"
             android:layout_marginRight="@dimen/card_view_margin"
-            android:src="@drawable/ic_add_folder"
+            android:src="@drawable/ic_folder_plus_grey600_36dp"
             android:id="@+id/new_directory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

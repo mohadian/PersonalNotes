@@ -4,13 +4,13 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="notesPrimaryBackgroundColor">#009688</color>
-    <color name="notesSecondaryBackgroundColor">#004D40</color>
-    <color name="notesColorBackgroundAccent">#FF9922</color>
+    <color name="notesPrimaryBackgroundColor">#03A9F4</color>
+    <color name="notesSecondaryBackgroundColor">#0277BD</color>
+    <color name="notesColorBackgroundAccent">#81D4FA</color>
     <color name="notesBackgroundColor">#FAFAFA</color>
     <color name="notesPrimaryTextColor">#FAFAFA</color>
     <color name="notesBody">#FAFAFA</color>
-    <color name="notesCardBody">#EBEBEB</color>
+    <color name="notesCardBody">#E1F5FE</color>
     <color name="notesSecondaryTextColor">#656565</color>
     <color name="notesDropBoxSeparator">#C1C1C1</color>
     <color name="notesSelectionTickColor">#455EDE</color>

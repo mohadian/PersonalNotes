@@ -47,19 +47,19 @@
                             android:id="@+id/new_note"
                             android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:src="@android:drawable/ic_menu_add"
+                            android:src="@drawable/ic_note_plus_outline_black_36dp"
                             android:layout_height="wrap_content" />
 
                         <ImageView
                             android:id="@+id/new_list"
-                            android:src="@android:drawable/ic_menu_sort_by_size"
+                            android:src="@drawable/ic_note_text_grey600_36dp"
                             android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content" />
 
                         <ImageView
                             android:id="@+id/new_image"
-                            android:src="@android:drawable/ic_menu_camera"
+                            android:src="@drawable/ic_camera_grey600_36dp"
                             android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content" />

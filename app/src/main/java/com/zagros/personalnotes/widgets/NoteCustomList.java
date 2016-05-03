@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.zagros.personalnotes.R;
 import com.zagros.personalnotes.utils.AppConstant;
 
 import java.util.ArrayList;
@@ -95,7 +96,7 @@ public class NoteCustomList extends LinearLayout {
             checkBox.setChecked(isStrikeOut);
 
             final ImageView deleteImageView = new ImageView(mContext);
-            deleteImageView.setImageResource(android.R.drawable.ic_menu_delete);
+            deleteImageView.setImageResource(R.drawable.ic_delete_grey600_24dp);
 
             final EditText textBox = new EditText(mContext);
             textBox.setText(listItem);
@@ -175,7 +176,7 @@ public class NoteCustomList extends LinearLayout {
         mListItem = new LinearLayout(mContext);
         mListItem.setOrientation(HORIZONTAL);
         final ImageView deleteImageView = new ImageView(mContext);
-        deleteImageView.setImageResource(android.R.drawable.ic_menu_delete);
+        deleteImageView.setImageResource(R.drawable.ic_delete_grey600_24dp);
 
         final EditText textBox = new EditText(mContext);
         textBox.setBackgroundColor(Color.TRANSPARENT);
@@ -196,6 +197,7 @@ public class NoteCustomList extends LinearLayout {
                 }
             }
         });
+        mListItem.addView(deleteImageView);
         mListItem.addView(deleteImageView);
         mListItem.addView(checkBox);
         mListItem.addView(textBox);

@@ -169,14 +169,14 @@ public class NoteDetailActivity extends BaseActivity
                     }
                     switch (storageSelection) {
                         case AppConstant.GOOGLE_DRIVE_SELECTION:
-                            updateStorageSelection(null, R.drawable.ic_google_drive, AppConstant.GOOGLE_DRIVE_SELECTION);
+                            updateStorageSelection(null, R.drawable.ic_google_drive_grey600_36dp, AppConstant.GOOGLE_DRIVE_SELECTION);
                             break;
                         case AppConstant.DEVICE_SELECTION:
                         case AppConstant.NONE_SELECTION:
-                            updateStorageSelection(null, R.drawable.ic_local, AppConstant.DEVICE_SELECTION);
+                            updateStorageSelection(null, R.drawable.ic_content_save_grey600_36dp, AppConstant.DEVICE_SELECTION);
                             break;
                         case AppConstant.DROP_BOX_SELECTION:
-                            updateStorageSelection(null, R.drawable.ic_dropbox, AppConstant.DROP_BOX_SELECTION);
+                            updateStorageSelection(null, R.drawable.ic_dropbox_grey600_36dp, AppConstant.DROP_BOX_SELECTION);
                             break;
                     }
                 } while (cursor.moveToNext());
@@ -210,16 +210,16 @@ public class NoteDetailActivity extends BaseActivity
         int storageSelection = note.getStorageSelection();
         switch (storageSelection) {
             case AppConstant.GOOGLE_DRIVE_SELECTION:
-                updateStorageSelection(null, R.drawable.ic_google_drive, AppConstant.GOOGLE_DRIVE_SELECTION);
+                updateStorageSelection(null, R.drawable.ic_google_drive_grey600_36dp, AppConstant.GOOGLE_DRIVE_SELECTION);
                 break;
             case AppConstant.DEVICE_SELECTION:
             case AppConstant.NONE_SELECTION:
                 if (!mImagePath.equals(AppConstant.NO_IMAGE)) {
-                    updateStorageSelection(null, R.drawable.ic_local, AppConstant.DEVICE_SELECTION);
+                    updateStorageSelection(null, R.drawable.ic_content_save_grey600_36dp, AppConstant.DEVICE_SELECTION);
                 }
                 break;
             case AppConstant.DROP_BOX_SELECTION:
-                updateStorageSelection(BitmapFactory.decodeFile(mImagePath), R.drawable.ic_dropbox, AppConstant.DROP_BOX_SELECTION);
+                updateStorageSelection(BitmapFactory.decodeFile(mImagePath), R.drawable.ic_dropbox_grey600_36dp, AppConstant.DROP_BOX_SELECTION);
                 break;
 
             default:
@@ -270,12 +270,12 @@ public class NoteDetailActivity extends BaseActivity
         mStorageSelection = (ImageView) findViewById(R.id.image_storage);
         if (AppSharedPreferences.getUploadPreference(getApplicationContext()) ==
                 AppConstant.GOOGLE_DRIVE_SELECTION) {
-            mStorageSelection.setBackgroundResource(R.drawable.ic_google_drive);
+            mStorageSelection.setBackgroundResource(R.drawable.ic_google_drive_grey600_48dp);
         } else if (AppSharedPreferences.getUploadPreference(getApplicationContext()) ==
                 AppConstant.DROP_BOX_SELECTION) {
-            mStorageSelection.setBackgroundResource(R.drawable.ic_dropbox);
+            mStorageSelection.setBackgroundResource(R.drawable.ic_dropbox_grey600_48dp);
         } else {
-            mStorageSelection.setBackgroundResource(R.drawable.ic_local);
+            mStorageSelection.setBackgroundResource(R.drawable.ic_content_save_grey600_48dp);
         }
 
         mNoteCustomList = new NoteCustomList(this);
@@ -294,13 +294,13 @@ public class NoteDetailActivity extends BaseActivity
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         if (menuItem.getItemId() == R.id.action_device) {
-                            updateStorageSelection(null, R.drawable.ic_local, AppConstant.DEVICE_SELECTION);
+                            updateStorageSelection(null, R.drawable.ic_content_save_grey600_48dp, AppConstant.DEVICE_SELECTION);
                         } else if (menuItem.getItemId() == R.id.action_google_drive) {
                             if (!AppSharedPreferences.isGoogleDriveAuthenticated(getApplicationContext())) {
                                 startActivity(new Intent(NoteDetailActivity.this, GoogleDriveSelectionActivity.class));
                                 finish();
                             } else {
-                                updateStorageSelection(null, R.drawable.ic_google_drive, AppConstant.GOOGLE_DRIVE_SELECTION);
+                                updateStorageSelection(null, R.drawable.ic_google_drive_grey600_48dp, AppConstant.GOOGLE_DRIVE_SELECTION);
                             }
                         } else if (menuItem.getItemId() == R.id.action_dropbox) {
                             AppSharedPreferences.setPersonalNotesPreference(getApplicationContext(), AppConstant.DROP_BOX_SELECTION);
@@ -308,7 +308,7 @@ public class NoteDetailActivity extends BaseActivity
                                 startActivity(new Intent(NoteDetailActivity.this, DropBoxPickerActivity.class));
                                 finish();
                             } else {
-                                updateStorageSelection(null, R.drawable.ic_dropbox, AppConstant.DROP_BOX_SELECTION);
+                                updateStorageSelection(null, R.drawable.ic_dropbox_grey600_48dp, AppConstant.DROP_BOX_SELECTION);
                             }
                         }
 
@@ -316,7 +316,7 @@ public class NoteDetailActivity extends BaseActivity
                             mCameraFileName = mBundle.getString("mCameraFileName");
                         }
                         AndroidAuthSession session = DropBoxActions.buildSession(getApplicationContext());
-                        mApi = new DropboxAPI<AndroidAuthSession>(session);
+                        mApi = new DropboxAPI<>(session);
 
                         return false;
                     }

@@ -64,12 +64,12 @@ public class DropBoxPickerActivity extends BaseActivity
             public void onClick(View v) {
                 if (mIsFirstClick) {
                     newDirectory.setVisibility(View.VISIBLE);
-                    createDir.setImageResource(R.drawable.ic_action_done);
+                    createDir.setImageResource(R.drawable.ic_check_grey600_48dp);
                     newDirectory.requestFocus();
                     mIsFirstClick = false;
                 } else {
                     String directoryName = newDirectory.getText().toString();
-                    createDir.setImageResource(R.drawable.ic_add_folder);
+                    createDir.setImageResource(R.drawable.ic_folder_plus_grey600_48dp);
                     newDirectory.setVisibility(View.GONE);
                     if (directoryName.length() > 0) {
                         initProgressDialog();
