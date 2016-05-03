@@ -3,6 +3,7 @@ package com.zagros.personalnotes.widgets;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -31,7 +32,7 @@ public class NoteCustomList extends LinearLayout {
 
     public void setUp() {
         setOrientation(VERTICAL);
-        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         setLayoutParams(params);
     }
 
@@ -44,14 +45,14 @@ public class NoteCustomList extends LinearLayout {
         // ...
         boolean isStrikeOut = false;
         String listItem = "";
-        for(String entryDetails : listEntryTokens) {
+        for (String entryDetails : listEntryTokens) {
             mListItem = new LinearLayout(mContext);
             mListItem.setOrientation(HORIZONTAL);
             String[] listEntry = entryDetails.split("\\$");
             //[0] Eggs
             // [1] false
-            for(int i=0; i<listEntry.length; i++){
-                if(i % 2 == 0) {
+            for (int i = 0; i < listEntry.length; i++) {
+                if (i % 2 == 0) {
                     listItem = listEntry[i];
                 } else {
                     isStrikeOut = Boolean.valueOf(listEntry[i]);
@@ -64,7 +65,7 @@ public class NoteCustomList extends LinearLayout {
             TextView textView = new TextView(mContext);
             textView.setText(listItem);
             textView.setBackgroundColor(Color.TRANSPARENT);
-            if(isStrikeOut) {
+            if (isStrikeOut) {
                 textView.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             }
 
@@ -84,6 +85,7 @@ public class NoteCustomList extends LinearLayout {
         for (String entryDetails : listEntryTokens) {
             mListItem = new LinearLayout(mContext);
             mListItem.setOrientation(HORIZONTAL);
+            mListItem.setGravity(Gravity.CENTER_VERTICAL);
             String[] listEntry = entryDetails.split("\\$");
             for (int i = 0; i < listEntry.length; i++) {
                 if (i % 2 == 0)
@@ -134,6 +136,7 @@ public class NoteCustomList extends LinearLayout {
             });
         }
     }
+
     public void setUpForListNotification(String listEntries) {
 
         setOrientation(VERTICAL);
@@ -145,11 +148,11 @@ public class NoteCustomList extends LinearLayout {
         for (String entryDetails : listEntryTokens) {
             mListItem = new LinearLayout(mContext);
             mListItem.setOrientation(HORIZONTAL);
-            //
-            if(entryDetails.contains(AppConstant.TRUE)) {
+            mListItem.setGravity(Gravity.CENTER_VERTICAL);
+            if (entryDetails.contains(AppConstant.TRUE)) {
                 listItem = entryDetails.split(AppConstant.TRUE)[0];
                 isStrikeOut = true;
-            } else if(entryDetails.contains(AppConstant.FALSE)){
+            } else if (entryDetails.contains(AppConstant.FALSE)) {
                 listItem = entryDetails.split(AppConstant.FALSE)[0];
                 isStrikeOut = false;
             }
@@ -172,11 +175,14 @@ public class NoteCustomList extends LinearLayout {
             addView(mListItem);
         }
     }
+
     public void addNewCheckbox() {
         mListItem = new LinearLayout(mContext);
         mListItem.setOrientation(HORIZONTAL);
+        mListItem.setGravity(Gravity.CENTER_VERTICAL);
         final ImageView deleteImageView = new ImageView(mContext);
         deleteImageView.setImageResource(R.drawable.ic_delete_grey600_24dp);
+        deleteImageView.setPadding(10, 10, 10, 10);
 
         final EditText textBox = new EditText(mContext);
         textBox.setBackgroundColor(Color.TRANSPARENT);
@@ -185,7 +191,6 @@ public class NoteCustomList extends LinearLayout {
         textBox.requestFocus();
         final CheckBox checkBox = new CheckBox(mContext);
         checkBox.setPadding(10, 10, 10, 10);
-
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -197,7 +202,6 @@ public class NoteCustomList extends LinearLayout {
                 }
             }
         });
-        mListItem.addView(deleteImageView);
         mListItem.addView(deleteImageView);
         mListItem.addView(checkBox);
         mListItem.addView(textBox);

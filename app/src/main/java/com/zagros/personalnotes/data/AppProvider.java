@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import com.zagros.personalnotes.contract.ArchivesContract;
 import com.zagros.personalnotes.contract.NotesContract;
 import com.zagros.personalnotes.contract.TrashContract;
+import com.zagros.personalnotes.utils.AppConstant;
 
 public class AppProvider extends ContentProvider {
     protected AppDatabase mOpenHelper;
@@ -30,13 +31,13 @@ public class AppProvider extends ContentProvider {
 
     private static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
-        String authority = NotesContract.CONTENT_AUTHORITY;
+        String authority = AppConstant.CONTENT_AUTHORITY;
         matcher.addURI(authority, "notes", NOTES);
         matcher.addURI(authority, "notes/*", NOTES_ID);
-        authority = ArchivesContract.CONTENT_AUTHORITY;
+        authority = AppConstant.CONTENT_AUTHORITY;
         matcher.addURI(authority, "archives", ARCHIVES);
         matcher.addURI(authority, "archives/*", ARCHIVES_ID);
-        authority = TrashContract.CONTENT_AUTHORITY;
+        authority = AppConstant.CONTENT_AUTHORITY;
         matcher.addURI(authority, "trash", TRASH);
         matcher.addURI(authority, "trash/*", TRASH_ID);
         return matcher;
@@ -178,7 +179,7 @@ public class AppProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
 
-        if (uri.equals(NotesContract.BASE_CONTENT_URI)) {
+        if (uri.equals(AppConstant.BASE_CONTENT_URI)) {
             deleteDatabase();
             return 0;
         }

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zagros.personalnotes.R;
-import com.zagros.personalnotes.ui.adapter.model.NavigationDrawerItem;
+import com.zagros.personalnotes.data.model.NavigationDrawerItem;
 
 import java.util.List;
 

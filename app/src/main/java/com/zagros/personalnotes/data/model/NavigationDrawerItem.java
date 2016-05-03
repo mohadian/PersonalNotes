@@ -1,4 +1,4 @@
-package com.zagros.personalnotes.ui.adapter.model;
+package com.zagros.personalnotes.data.model;
 
 public class NavigationDrawerItem {
     private int iconId;

@@ -30,7 +30,7 @@ public class DropBoxDirectoryCreatorAsync extends AsyncTask<Void, Long, Boolean>
             mApi.createFolder(mPath);
             mMessage = AppConstant.FOLDER_CREATED;
 
-        } catch(DropboxException e) {
+        } catch (DropboxException e) {
             mMessage = AppConstant.FOLDER_CREATE_ERROR;
         }
 
@@ -40,7 +40,7 @@ public class DropBoxDirectoryCreatorAsync extends AsyncTask<Void, Long, Boolean>
     @Override
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
-        if(result) {
+        if (result) {
             mListener.onDirectoryCreateFinished(mName);
             Toast.makeText(mContext.getApplicationContext(), mMessage, Toast.LENGTH_LONG).show();
         }

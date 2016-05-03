@@ -14,6 +14,7 @@ import com.zagros.personalnotes.contract.ArchivesContract;
 import com.zagros.personalnotes.contract.NotesContract;
 import com.zagros.personalnotes.contract.TrashContract;
 import com.zagros.personalnotes.data.AppDatabase;
+import com.zagros.personalnotes.utils.AppConstant;
 
 public class AppProvider extends ContentProvider {
     protected AppDatabase mOpenHelper;
@@ -31,13 +32,13 @@ public class AppProvider extends ContentProvider {
 
     private static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
-        String authority = NotesContract.CONTENT_AUTHORITY;
+        String authority = AppConstant.CONTENT_AUTHORITY;
         matcher.addURI(authority, "notes", NOTES);
         matcher.addURI(authority, "notes/*", NOTES_ID);
-        authority = ArchivesContract.CONTENT_AUTHORITY;
+        authority = AppConstant.CONTENT_AUTHORITY;
         matcher.addURI(authority, "archives", ARCHIVES);
         matcher.addURI(authority, "archives/*", ARCHIVES_ID);
-        authority = TrashContract.CONTENT_AUTHORITY;
+        authority = AppConstant.CONTENT_AUTHORITY;
         matcher.addURI(authority, "trash", TRASH);
         matcher.addURI(authority, "trash/*", TRASH_ID);
         return matcher;
@@ -58,7 +59,7 @@ public class AppProvider extends ContentProvider {
     @Override
     public String getType(Uri uri) {
         final int match = sUriMatcher.match(uri);
-        switch(match) {
+        switch (match) {
             case NOTES:
                 return NotesContract.Notes.CONTENT_TYPE;
             case NOTES_ID:
@@ -83,7 +84,7 @@ public class AppProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
-        switch(match) {
+        switch (match) {
             case NOTES:
                 queryBuilder.setTables(AppDatabase.Tables.NOTES);
                 break;
@@ -123,15 +124,15 @@ public class AppProvider extends ContentProvider {
             case NOTES:
                 long noteRecordId = db.insertOrThrow(AppDatabase.Tables.NOTES, null, values);
                 return NotesContract.Notes.buildNoteUri(String.valueOf(noteRecordId));
-            
+
             case ARCHIVES:
                 long archiveRecordId = db.insertOrThrow(AppDatabase.Tables.ARCHIVES, null, values);
                 return ArchivesContract.Archives.buildArchiveUri(String.valueOf(archiveRecordId));
-            
+
             case TRASH:
                 long trashRecordId = db.insertOrThrow(AppDatabase.Tables.TRASH, null, values);
                 return TrashContract.Trash.buildTrashUri(String.valueOf(trashRecordId));
-            
+
             default:
                 throw new IllegalArgumentException("Unknown Uri: " + uri);
         }
@@ -146,13 +147,13 @@ public class AppProvider extends ContentProvider {
         switch (match) {
             case NOTES:
                 return db.update(AppDatabase.Tables.NOTES, values, selection, selectionArgs);
-            
+
             case NOTES_ID:
                 String noteId = NotesContract.Notes.getNoteId(uri);
                 selectionCriteria = BaseColumns._ID + "=" + noteId
                         + (!TextUtils.isEmpty(selection) ? " AND ( " + selection + ")" : "");
                 return db.update(AppDatabase.Tables.NOTES, values, selectionCriteria, selectionArgs);
-            
+
             case ARCHIVES:
                 return db.update(AppDatabase.Tables.ARCHIVES, values, selection, selectionArgs);
 
@@ -161,7 +162,7 @@ public class AppProvider extends ContentProvider {
                 selectionCriteria = BaseColumns._ID + "=" + archiveId
                         + (!TextUtils.isEmpty(selection) ? " AND ( " + selection + ")" : "");
                 return db.update(AppDatabase.Tables.ARCHIVES, values, selectionCriteria, selectionArgs);
-            
+
             case TRASH:
                 return db.update(AppDatabase.Tables.TRASH, values, selection, selectionArgs);
 
@@ -179,7 +180,7 @@ public class AppProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
 
-        if (uri.equals(NotesContract.BASE_CONTENT_URI)) {
+        if (uri.equals(AppConstant.BASE_CONTENT_URI)) {
             deleteDatabase();
             return 0;
         }

@@ -6,6 +6,7 @@ import android.provider.BaseColumns;
 import com.zagros.personalnotes.utils.AppConstant;
 
 public class NotesContract {
+
     public interface NotesColumns {
         String NOTES_TITLE = "notes_title";
         String NOTES_DESCRIPTION = "notes_description";
@@ -16,14 +17,11 @@ public class NotesContract {
         String NOTES_IMAGE_STORAGE_SELECTION = "notes_image_storage_selection";
     }
 
-    public static final String CONTENT_AUTHORITY = "com.zagros.personalnotes.provider";
-    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
-    private static final String PATH_NOTES = AppConstant.TABLE_NOTES;
-    public static final Uri URI_TABLE = BASE_CONTENT_URI.buildUpon().appendEncodedPath(PATH_NOTES).build();
+    public static final Uri URI_TABLE = AppConstant.BASE_CONTENT_URI.buildUpon().appendEncodedPath(AppConstant.TABLE_NOTES).build();
 
     public static class Notes implements  NotesColumns, BaseColumns {
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd." + CONTENT_AUTHORITY + ".notes";
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd." + CONTENT_AUTHORITY + ".notes";
+        public static final String CONTENT_TYPE = AppConstant.VND_ANDROID_CURSOR_DIR_VND + AppConstant.CONTENT_AUTHORITY + "." + AppConstant.TABLE_NOTES;
+        public static final String CONTENT_ITEM_TYPE = AppConstant.VND_ANDROID_CURSOR_DIR_VND + AppConstant.CONTENT_AUTHORITY + "." + AppConstant.TABLE_NOTES;
 
         public static Uri buildNoteUri(String noteId) {
             return URI_TABLE.buildUpon().appendEncodedPath(noteId).build();

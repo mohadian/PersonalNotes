@@ -123,7 +123,7 @@ public class TrashActivity extends BaseActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_empty_trash) {
+        if (item.getItemId() == R.id.action_empty_trash) {
             new AppDatabase(getApplicationContext()).emptyTrash();
             mTrashAdapter.setData(new ArrayList<Trash>());
             mTrashAdapter.notifyDataSetChanged();

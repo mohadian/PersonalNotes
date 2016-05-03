@@ -1,8 +1,5 @@
 package com.zagros.personalnotes.data.model;
 
-/**
- * Created by dev on 4/05/15.
- */
 public class Archive {
     private String title, description, dateTime, category, type;
     private int id;

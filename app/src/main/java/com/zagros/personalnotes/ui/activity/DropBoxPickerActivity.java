@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.zagros.personalnotes.R;
-import com.zagros.personalnotes.data.model.DropBoxDirectoryListenerAsync;
+import com.zagros.personalnotes.ui.listener.DropBoxDirectoryListenerAsync;
 import com.zagros.personalnotes.ui.adapter.DropboxAdapter;
 import com.zagros.personalnotes.ui.listener.RecyclerItemClickListener;
 import com.zagros.personalnotes.utils.AppConstant;
@@ -28,8 +28,7 @@ import java.util.Stack;
 
 public class DropBoxPickerActivity extends BaseActivity
         implements DropBoxDirectoryListenerAsync.OnLoadFinished,
-        DropBoxDirectoryCreatorAsync.OnDirectoryCreateFinished
-{
+        DropBoxDirectoryCreatorAsync.OnDirectoryCreateFinished {
     private ProgressDialog mDialog;
     private DropboxAPI<AndroidAuthSession> mApi;
     private boolean mAfterAuth = false;
@@ -45,7 +44,7 @@ public class DropBoxPickerActivity extends BaseActivity
         setUpList();
         setUpBar();
         setUpDirectoryCreator();
-        if(!AppSharedPreferences.isDropBoxAuthenticated(getApplicationContext())) {
+        if (!AppSharedPreferences.isDropBoxAuthenticated(getApplicationContext())) {
             authenticate();
         } else {
             AndroidAuthSession session = DropBoxActions.buildSession(getApplicationContext());
@@ -115,7 +114,7 @@ public class DropBoxPickerActivity extends BaseActivity
                 initProgressDialog();
                 try {
                     mDirectoryStack.pop();
-                } catch(EmptyStackException e) {
+                } catch (EmptyStackException e) {
                     startActivity(new Intent(DropBoxPickerActivity.this, NotesActivity.class));
                 }
                 new DropBoxDirectoryListenerAsync(getApplicationContext(), mApi,
@@ -152,8 +151,8 @@ public class DropBoxPickerActivity extends BaseActivity
 
     private String getCurrentPath() {
         String path = "";
-        for(String p : mDirectoryStack) {
-            if(!p.equals("/")) {
+        for (String p : mDirectoryStack) {
+            if (!p.equals("/")) {
                 path = path + "/" + p;
             }
         }
@@ -176,9 +175,9 @@ public class DropBoxPickerActivity extends BaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        if(mAfterAuth) {
+        if (mAfterAuth) {
             AndroidAuthSession session = mApi.getSession();
-            if(session.authenticationSuccessful()) {
+            if (session.authenticationSuccessful()) {
                 try {
                     session.finishAuthentication();
                     DropBoxActions.storeAuth(session, getApplicationContext());

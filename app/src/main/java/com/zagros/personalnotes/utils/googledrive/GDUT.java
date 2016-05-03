@@ -87,7 +87,7 @@ final public class GDUT {
             return GDUT.pfs.getString(ACC_NAME, null);
         }
 
-        public  static Account emil2Accnt(String emil) {
+        public static Account emil2Accnt(String emil) {
             if (emil != null) {
                 Account[] accounts =
                         AccountManager.get(GDUT.acx).getAccountsByType(GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);

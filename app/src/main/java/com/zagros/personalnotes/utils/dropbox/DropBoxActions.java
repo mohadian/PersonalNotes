@@ -10,13 +10,13 @@ import com.zagros.personalnotes.utils.AppConstant;
 
 public class DropBoxActions {
     public static void loadAuth(AndroidAuthSession session, Context context) {
-        SharedPreferences prefs = context.getSharedPreferences(AppConstant.ACCOUNT_PREFS_NAME,0);
+        SharedPreferences prefs = context.getSharedPreferences(AppConstant.ACCOUNT_PREFS_NAME, 0);
         String key = prefs.getString(AppConstant.ACCESS_KEY_NAME, null);
         String secret = prefs.getString(AppConstant.ACCESS_SECRET_NAME, null);
-        if(key == null || secret == null || key.length() == 0 || secret.length() == 0) {
+        if (key == null || secret == null || key.length() == 0 || secret.length() == 0) {
             return;
         }
-        if(key.equals("oath2:")) {
+        if (key.equals("oath2:")) {
             session.setOAuth2AccessToken(secret);
         } else {
             session.setAccessTokenPair(new AccessTokenPair(key, secret));
@@ -25,12 +25,12 @@ public class DropBoxActions {
 
     public static void storeAuth(AndroidAuthSession session, Context context) {
         String oAuth2AccessToken = session.getOAuth2AccessToken();
-        if(oAuth2AccessToken != null) {
+        if (oAuth2AccessToken != null) {
             saveAuth(context, "oauth2:", oAuth2AccessToken);
             return;
         }
         AccessTokenPair oAuth1AccessToken = session.getAccessTokenPair();
-        if(oAuth1AccessToken != null) {
+        if (oAuth1AccessToken != null) {
             saveAuth(context, oAuth1AccessToken.key, oAuth1AccessToken.secret);
         }
     }
@@ -45,7 +45,7 @@ public class DropBoxActions {
     }
 
     public static void clearKeys(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences(AppConstant.ACCOUNT_PREFS_NAME,0);
+        SharedPreferences prefs = context.getSharedPreferences(AppConstant.ACCOUNT_PREFS_NAME, 0);
         SharedPreferences.Editor edit = prefs.edit();
         edit.clear();
         edit.apply();

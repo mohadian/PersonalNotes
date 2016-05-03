@@ -25,19 +25,19 @@ public class GoogleDriveSelectionActivity extends BaseGoogleDriveActivity {
         try {
             startIntentSenderForResult(
                     intentSender, REQUEST_CODE_OPENER, null, 0, 0, 0);
-        } catch(IntentSender.SendIntentException e) {
+        } catch (IntentSender.SendIntentException e) {
             // Error processing
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch(requestCode) {
+        switch (requestCode) {
             case REQUEST_CODE_OPENER:
-                if(data != null && resultCode == RESULT_OK) {
+                if (data != null && resultCode == RESULT_OK) {
                     mDriveId = (DriveId) data.getParcelableExtra(
                             OpenFileActivityBuilder.EXTRA_RESPONSE_DRIVE_ID);
-                    if(mDriveId != null) {
+                    if (mDriveId != null) {
                         AppSharedPreferences.storeGoogleDriveResourceId(getApplicationContext(), mDriveId.getResourceId());
                         BaseActivity.actAsNote();
                         startActivity(new Intent(GoogleDriveSelectionActivity.this, GoogleDriveDirectoryNameGetterActivity.class));

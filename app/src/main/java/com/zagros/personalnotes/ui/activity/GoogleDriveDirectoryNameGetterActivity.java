@@ -18,7 +18,7 @@ public class GoogleDriveDirectoryNameGetterActivity extends BaseGoogleDriveActiv
             ResultCallback<DriveResource.MetadataResult>() {
                 @Override
                 public void onResult(DriveResource.MetadataResult metadataResult) {
-                    if(!metadataResult.getStatus().isSuccess()) {
+                    if (!metadataResult.getStatus().isSuccess()) {
                         showMessage("Problem trying to fetch metadata");
                         return;
                     }
@@ -33,7 +33,7 @@ public class GoogleDriveDirectoryNameGetterActivity extends BaseGoogleDriveActiv
             ResultCallback<DriveApi.DriveIdResult>() {
                 @Override
                 public void onResult(DriveApi.DriveIdResult driveIdResult) {
-                    if(!driveIdResult.getStatus().isSuccess()) {
+                    if (!driveIdResult.getStatus().isSuccess()) {
                         showMessage("Cannot find driveId. Are you authorized to view this file");
                         return;
                     }
@@ -51,12 +51,12 @@ public class GoogleDriveDirectoryNameGetterActivity extends BaseGoogleDriveActiv
             AppSharedPreferences.setPersonalNotesPreference(getApplicationContext(), AppConstant.GOOGLE_DRIVE_SELECTION);
             AppSharedPreferences.isGoogleDriveAuthenticated(getApplicationContext(), true);
             showMessage("Image location set in Google Drive");
-        } catch(IllegalStateException e) {
+        } catch (IllegalStateException e) {
             // this can happen when a newly created directory is selected
             showMessage("An error occured while selected the folder.  Sync issue? Please try again");
             startActivity(new Intent(GoogleDriveDirectoryNameGetterActivity.this, GoogleDriveSelectionActivity.class));
             finish();
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             showMessage("An error occured while selected the folder.  Sync issue? Please try again");
             startActivity(new Intent(GoogleDriveDirectoryNameGetterActivity.this, GoogleDriveSelectionActivity.class));
             finish();

@@ -69,6 +69,7 @@ final public class GDActions {
             ).build();
         }
     }
+
     public static void connect(boolean bOn) {
         if (mGAC != null) {
             if (bOn) {
@@ -112,6 +113,7 @@ final public class GDActions {
         }
         return gfs;
     }
+
     public static DriveId create(DriveId prId, String titl, String mime, byte[] buf) {
         if (titl == null || !isConnected()) return null;
         DriveId dId = null;
@@ -157,6 +159,7 @@ final public class GDActions {
         }
         return dId;
     }
+
     public static DriveId createTreeGDAA(String root, String titl, byte[] buf) {
         if (root == null || titl == null) return null;
         DriveId dId = findOrCreateFolder((DriveId) null, root);
@@ -257,6 +260,7 @@ final public class GDActions {
         }
         return rsid;
     }
+
     public static byte[] read(String rsId, int thmbSz) {
         byte[] buf = null;
         if (isConnected() && rsId != null) try {

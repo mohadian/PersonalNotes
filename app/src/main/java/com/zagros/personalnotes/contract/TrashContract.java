@@ -3,6 +3,7 @@ package com.zagros.personalnotes.contract;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+import com.google.api.services.drive.model.App;
 import com.zagros.personalnotes.utils.AppConstant;
 
 public class TrashContract {
@@ -12,15 +13,12 @@ public class TrashContract {
         String TRASH_DATE_TIME = "deleted_date_time";
     }
 
-    public static final String CONTENT_AUTHORITY = "com.zagros.personalnotes.provider";
-    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
-    private static final String PATH_DELETED = AppConstant.TABLE_TRASH;
-    public static final Uri URI_TABLE = BASE_CONTENT_URI.buildUpon().appendEncodedPath(PATH_DELETED).build();
+    public static final Uri URI_TABLE = AppConstant.BASE_CONTENT_URI.buildUpon().appendEncodedPath(AppConstant.TABLE_TRASH).build();
 
     public static class Trash implements TrashColumns, BaseColumns {
 
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd." + CONTENT_AUTHORITY + ".deleted";
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd." + CONTENT_AUTHORITY + ".deleted";
+        public static final String CONTENT_TYPE = AppConstant.VND_ANDROID_CURSOR_DIR_VND + AppConstant.CONTENT_AUTHORITY + "." + AppConstant.TABLE_TRASH;
+        public static final String CONTENT_ITEM_TYPE = AppConstant.VND_ANDROID_CURSOR_DIR_VND + AppConstant.CONTENT_AUTHORITY + "." + AppConstant.TABLE_TRASH;
 
         public static Uri buildTrashUri(String deletedId) {
             return URI_TABLE.buildUpon().appendEncodedPath(deletedId).build();

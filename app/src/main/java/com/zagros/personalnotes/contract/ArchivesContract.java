@@ -14,14 +14,11 @@ public class ArchivesContract {
         String ARCHIVES_TYPE = "archives_type";
     }
 
-    public static final String CONTENT_AUTHORITY = "com.zagros.personalnotes.provider";
-    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
-    private static final String PATH_ARCHIVES = AppConstant.TABLE_ARCHIVES;
-    public static final Uri URI_TABLE = BASE_CONTENT_URI.buildUpon().appendEncodedPath(PATH_ARCHIVES).build();
+    public static final Uri URI_TABLE = AppConstant.BASE_CONTENT_URI.buildUpon().appendEncodedPath(AppConstant.PATH_ARCHIVES).build();
 
     public static class Archives implements ArchivesColumns, BaseColumns {
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd." + CONTENT_AUTHORITY + ".archives";
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd." + CONTENT_AUTHORITY + ".archives";
+        public static final String CONTENT_TYPE = AppConstant.VND_ANDROID_CURSOR_DIR_VND + AppConstant.CONTENT_AUTHORITY + "." + AppConstant.TABLE_ARCHIVES;
+        public static final String CONTENT_ITEM_TYPE = AppConstant.VND_ANDROID_CURSOR_DIR_VND + AppConstant.CONTENT_AUTHORITY + "." + AppConstant.TABLE_ARCHIVES;
 
         public static Uri buildArchiveUri(String archiveId) {
             return URI_TABLE.buildUpon().appendEncodedPath(archiveId).build();

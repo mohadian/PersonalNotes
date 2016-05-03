@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.zagros.personalnotes.R;
 import com.zagros.personalnotes.ui.adapter.NavigationDrawerAdapter;
-import com.zagros.personalnotes.ui.adapter.model.NavigationDrawerItem;
+import com.zagros.personalnotes.data.model.NavigationDrawerItem;
 import com.zagros.personalnotes.utils.AppConstant;
 import com.zagros.personalnotes.utils.AppSharedPreferences;
 import com.zagros.personalnotes.widgets.NavigationDrawerFragment;
@@ -140,12 +140,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         //Few items, so added manually
 
         List<NavigationDrawerItem> items = new ArrayList<>();
-        items.add(new NavigationDrawerItem(android.R.drawable.ic_menu_agenda, AppConstant.DRAWER_NOTES));
-        items.add(new NavigationDrawerItem(android.R.drawable.ic_popup_reminder, AppConstant.DRAWER_REMINDERS));
-        items.add(new NavigationDrawerItem(android.R.drawable.ic_menu_gallery, AppConstant.DRAWER_ARCHIVES));
-        items.add(new NavigationDrawerItem(android.R.drawable.ic_menu_delete, AppConstant.DRAWER_TRASH));
-        items.add(new NavigationDrawerItem(android.R.drawable.ic_menu_preferences, AppConstant.DRAWER_SETTINGS));
-        items.add(new NavigationDrawerItem(android.R.drawable.ic_menu_help, AppConstant.DRAWER_HELP_AND_FEEDBACK));
+        items.add(new NavigationDrawerItem(R.drawable.ic_playlist_check_white_36dp, AppConstant.DRAWER_NOTES));
+        items.add(new NavigationDrawerItem(R.drawable.ic_alarm_multiple_white_36dp, AppConstant.DRAWER_REMINDERS));
+        items.add(new NavigationDrawerItem(R.drawable.ic_archive_white_36dp, AppConstant.DRAWER_ARCHIVES));
+        items.add(new NavigationDrawerItem(R.drawable.ic_delete_forever_white_36dp, AppConstant.DRAWER_TRASH));
+        items.add(new NavigationDrawerItem(R.drawable.ic_settings_white_36dp, AppConstant.DRAWER_SETTINGS));
+        items.add(new NavigationDrawerItem(R.drawable.ic_help_circle_outline_white_36dp, AppConstant.DRAWER_HELP_AND_FEEDBACK));
 
         //initialize the drawer fragment
         mDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);

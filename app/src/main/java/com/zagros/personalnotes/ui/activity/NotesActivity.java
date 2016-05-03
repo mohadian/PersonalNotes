@@ -117,12 +117,12 @@ public class NotesActivity extends BaseActivity implements
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        if(item.getItemId() == R.id.action_delete) {
+                        if (item.getItemId() == R.id.action_delete) {
                             moveToTrash();
                             delete(v, pos);
-                        } else if(item.getItemId() == R.id.action_archive) {
+                        } else if (item.getItemId() == R.id.action_archive) {
                             moveToArchive(v, pos);
-                        } else if(item.getItemId() == R.id.action_edit) {
+                        } else if (item.getItemId() == R.id.action_edit) {
                             edit(v);
                         }
 
@@ -144,10 +144,10 @@ public class NotesActivity extends BaseActivity implements
         this.mNotes = data;
         Thread[] thread = new Thread[mNotes.size()];
         int threadCounter = 0;
-        for (final Note aNote: mNotes) {
+        for (final Note aNote : mNotes) {
             if (AppConstant.GOOGLE_DRIVE_SELECTION == aNote.getStorageSelection()) {
                 GDUT.init(this);
-                if(checkPlayServices() && checkUserAccount()) {
+                if (checkPlayServices() && checkUserAccount()) {
                     GDActions.init(this, GDUT.AM.getActiveEmil());
                     GDActions.connect(true);
                 }
@@ -157,7 +157,7 @@ public class NotesActivity extends BaseActivity implements
                         do {
                             ArrayList<GDActions.GF> gfs = GDActions.search(AppSharedPreferences.getGoogleDriveResourceId(getApplicationContext()),
                                     aNote.getImagePath(), GDUT.MIME_JPEG);
-                            if(gfs.size()>0) {
+                            if (gfs.size() > 0) {
 //                                TODO cache the image
                                 //byte[] imageBytes = GDActions.read(gfs.get(0).id, 0);
                                 //Bitmap bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
@@ -176,31 +176,31 @@ public class NotesActivity extends BaseActivity implements
                                 mIsImageNotFound = true;
                                 try {
                                     Thread.sleep(500);
-                                } catch(InterruptedException e) {
+                                } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
                             }
-                        } while(mIsImageNotFound);
+                        } while (mIsImageNotFound);
                     }
                 });
                 thread[threadCounter].start();
                 threadCounter++;
 
 
-            } else if(AppConstant.DROP_BOX_SELECTION == aNote.getStorageSelection()) {
-                thread[threadCounter] =  new Thread(new Runnable() {
+            } else if (AppConstant.DROP_BOX_SELECTION == aNote.getStorageSelection()) {
+                thread[threadCounter] = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         do {
                             Drawable drawable = getImageFromDropbox(mDropboxAPI,
                                     AppSharedPreferences.getDropBoxUploadPath(getApplicationContext()),
                                     aNote.getImagePath());
-                            if(drawable != null) {
+                            if (drawable != null) {
                                 Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
 //                                TODO cache the image
                                 //aNote.setBitmap(bitmap);
                             }
-                            if(!mIsImageNotFound) {
+                            if (!mIsImageNotFound) {
                                 mNotesAdapter.setData(mNotes);
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -214,7 +214,7 @@ public class NotesActivity extends BaseActivity implements
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                        } while(mIsImageNotFound);
+                        } while (mIsImageNotFound);
                     }
                 });
                 thread[threadCounter].start();
@@ -232,24 +232,24 @@ public class NotesActivity extends BaseActivity implements
         Drawable drawable;
         String cachePath = getApplicationContext().getCacheDir().getAbsolutePath() + "/" + filename;
         File cacheFile = new File(cachePath);
-        if(cacheFile.exists()) {
+        if (cacheFile.exists()) {
             mIsImageNotFound = false;
             return Drawable.createFromPath(cachePath);
         } else {
             try {
                 DropboxAPI.Entry dirEnt = mApi.metadata(mPath, 1000, null, true, null);
-                if(!dirEnt.isDir || dirEnt.contents == null) {
+                if (!dirEnt.isDir || dirEnt.contents == null) {
                     mIsImageNotFound = true;
                 }
                 ArrayList<DropboxAPI.Entry> thumbs = new ArrayList<DropboxAPI.Entry>();
                 for (DropboxAPI.Entry ent : dirEnt.contents) {
-                    if(ent.thumbExists) {
-                        if(ent.fileName().startsWith(filename)) {
+                    if (ent.thumbExists) {
+                        if (ent.fileName().startsWith(filename)) {
                             thumbs.add(ent);
                         }
                     }
                 }
-                if(thumbs.size() == 0) {
+                if (thumbs.size() == 0) {
                     mIsImageNotFound = true;
                 } else {
                     DropboxAPI.Entry ent = thumbs.get(0);
@@ -266,7 +266,7 @@ public class NotesActivity extends BaseActivity implements
                     mIsImageNotFound = false;
                     return drawable;
                 }
-            } catch(DropboxException e) {
+            } catch (DropboxException e) {
                 e.printStackTrace();
                 mIsImageNotFound = true;
             }
@@ -278,7 +278,7 @@ public class NotesActivity extends BaseActivity implements
 
     private void changeNoItemTag() {
         TextView noItemTextView = (TextView) findViewById(R.id.no_item_textview);
-        if(mNotesAdapter.getItemCount() !=0) {
+        if (mNotesAdapter.getItemCount() != 0) {
             noItemTextView.setVisibility(View.GONE);
             mRecyclerView.setVisibility(View.VISIBLE);
         } else {
@@ -300,12 +300,12 @@ public class NotesActivity extends BaseActivity implements
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        if(!mIsInAuth) {
-            if(connectionResult.hasResolution()) {
+        if (!mIsInAuth) {
+            if (connectionResult.hasResolution()) {
                 try {
                     mIsInAuth = true;
                     connectionResult.startResolutionForResult(this, AppConstant.REQ_AUTH);
-                } catch(IntentSender.SendIntentException e) {
+                } catch (IntentSender.SendIntentException e) {
                     e.printStackTrace();
                     finish();
                 }
@@ -324,8 +324,8 @@ public class NotesActivity extends BaseActivity implements
     private boolean checkUserAccount() {
         String email = GDUT.AM.getActiveEmil();
         Account account = GDUT.AM.getPrimaryAccnt(true);
-        if(email == null) {
-            if(account == null) {
+        if (email == null) {
+            if (account == null) {
                 account = GDUT.AM.getPrimaryAccnt(false);
                 Intent accountIntent = AccountPicker.newChooseAccountIntent(account, null, new String[]{GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE}, true,
                         null, null, null, null);
@@ -337,7 +337,7 @@ public class NotesActivity extends BaseActivity implements
             return true;
         }
         account = GDUT.AM.getActiveAccnt();
-        if(account == null) {
+        if (account == null) {
             Intent accountIntent = AccountPicker.newChooseAccountIntent(account, null, new String[]{GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE}, true,
                     null, null, null, null);
             startActivityForResult(accountIntent, AppConstant.REQ_ACCPICK);
@@ -350,8 +350,8 @@ public class NotesActivity extends BaseActivity implements
 
     private boolean checkPlayServices() {
         int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if(status != ConnectionResult.SUCCESS) {
-            if(GooglePlayServicesUtil.isUserRecoverableError(status)) {
+        if (status != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(status)) {
                 errorDialog(status, AppConstant.REQ_RECOVER);
             } else {
                 finish();
@@ -409,7 +409,7 @@ public class NotesActivity extends BaseActivity implements
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.home_list);
         int isList = linearLayout.getVisibility();
         String listDescription;
-        if(isList == View.VISIBLE) {
+        if (isList == View.VISIBLE) {
             NoteCustomList noteCustomList = (NoteCustomList) linearLayout.getChildAt(0);
             listDescription = noteCustomList.getLists();
 //            for(int i=0; i<noteCustomList.getChildCount(); i++) {
@@ -454,7 +454,7 @@ public class NotesActivity extends BaseActivity implements
             intent.putExtra(AppConstant.LIST, AppConstant.TRUE);
         }
         ImageView tempImageView = (ImageView) view.findViewById(R.id.image_note_custom_home);
-        if(tempImageView.getDrawable() != null) {
+        if (tempImageView.getDrawable() != null) {
             mSendingImage = ((BitmapDrawable) tempImageView.getDrawable()).getBitmap();
         }
         startActivity(intent);
@@ -463,15 +463,15 @@ public class NotesActivity extends BaseActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
+        switch (requestCode) {
             case AppConstant.REQ_ACCPICK: {
-                if(resultCode == Activity.RESULT_OK && data != null) {
+                if (resultCode == Activity.RESULT_OK && data != null) {
                     String email = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-                    if(GDUT.AM.setEmil(email) == GDUT.AM.CHANGED) {
+                    if (GDUT.AM.setEmil(email) == GDUT.AM.CHANGED) {
                         GDActions.init(this, GDUT.AM.getActiveEmil());
                         GDActions.connect(true);
                     }
-                } else if(GDUT.AM.getActiveEmil() == null) {
+                } else if (GDUT.AM.getActiveEmil() == null) {
                     GDUT.AM.removeActiveAccnt();
                     finish();
                 }
@@ -482,9 +482,9 @@ public class NotesActivity extends BaseActivity implements
 
             case AppConstant.REQ_RECOVER: {
                 mIsInAuth = false;
-                if(resultCode == Activity.RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     GDActions.connect(true);
-                } else if(resultCode == RESULT_CANCELED) {
+                } else if (resultCode == RESULT_CANCELED) {
                     GDUT.AM.removeActiveAccnt();
                     finish();
                 }

@@ -49,14 +49,14 @@ public class NavigationDrawerFragment extends Fragment {
                 toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
-                if(slideOffset < 0.5f){
-                    toolbar.setAlpha(1-(slideOffset/2.0f));
+                if (slideOffset < 0.5f) {
+                    toolbar.setAlpha(1 - (slideOffset / 2.0f));
                 }
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                if(!mUserLearnedDrawer){
+                if (!mUserLearnedDrawer) {
                     mUserLearnedDrawer = true;
                     AppSharedPreferences.setUserLearned(getActivity(), AppConstant.KEY_USER_LEARNED_DRAWER, AppConstant.TRUE);
                 }
@@ -68,7 +68,7 @@ public class NavigationDrawerFragment extends Fragment {
             }
         };
 
-        if(!mUserLearnedDrawer && mFromSavedInstanceState){
+        if (!mUserLearnedDrawer && mFromSavedInstanceState) {
             mDrawerLayout.openDrawer(containerView);
         }
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -80,7 +80,7 @@ public class NavigationDrawerFragment extends Fragment {
         });
     }
 
-    public void closeDrawer(){
+    public void closeDrawer() {
         mDrawerLayout.closeDrawers();
     }
 }

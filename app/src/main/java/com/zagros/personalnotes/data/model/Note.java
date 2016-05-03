@@ -1,8 +1,5 @@
 package com.zagros.personalnotes.data.model;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.zagros.personalnotes.utils.AppConstant;
 
 public class Note {
@@ -44,8 +41,8 @@ public class Note {
             aNote.setImagePath(this.mImagePath);
         } else {
             String list = "";
-            for(int i = 7;i<fields.length;i++)
-                list = list+fields[i];
+            for (int i = 7; i < fields.length; i++)
+                list = list + fields[i];
             this.mDescription = list;
         }
     }

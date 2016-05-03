@@ -74,8 +74,8 @@
         android:id="@+id/drop_box_set"
         android:src="@drawable/dropbox"
         android:layout_below="@id/google_drive_set"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="100dp"
+        android:layout_width="100dp" />
 
     <LinearLayout
         android:orientation="vertical"

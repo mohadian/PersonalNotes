@@ -46,20 +46,20 @@ public class DropBoxImageUploadAsync extends AsyncTask<Void, Long, Boolean> {
                         }
                     });
 
-            if(request != null) {
+            if (request != null) {
                 request.upload();
                 return true;
             }
 
-        } catch(DropboxException e) {
+        } catch (DropboxException e) {
             errorMessage = "Dropbox exception";
             // DropboxUnlinkedException, DropboxFileSizeException,DropboxPartialFileException,DropboxServerException
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             errorMessage = "File not found exception";
         }
 
         return false;
     }
 
-    
+
 }

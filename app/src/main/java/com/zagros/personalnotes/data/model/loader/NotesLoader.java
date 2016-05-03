@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NotesLoader extends AsyncTaskLoader<List<Note>> {
-
     private List<Note> mNotes;
     private ContentResolver mContentResolver;
     private Cursor mCursor;
