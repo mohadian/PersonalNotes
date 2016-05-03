@@ -14,5 +14,5 @@
     <color name="notesSecondaryTextColor">#656565</color>
     <color name="notesDropBoxSeparator">#C1C1C1</color>
     <color name="notesSelectionTickColor">#455EDE</color>
-    <color name="notesImageBackground">#C1C1C1</color>
+    <color name="notesImageBackground">#CECECE</color>
 </resources>

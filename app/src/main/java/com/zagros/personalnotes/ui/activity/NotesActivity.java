@@ -23,11 +23,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.exception.DropboxException;
@@ -455,7 +455,7 @@ public class NotesActivity extends BaseActivity implements
         }
         ImageView tempImageView = (ImageView) view.findViewById(R.id.image_note_custom_home);
         if (tempImageView.getDrawable() != null) {
-            mSendingImage = ((BitmapDrawable) tempImageView.getDrawable()).getBitmap();
+            mSendingImage = ((GlideBitmapDrawable) tempImageView.getDrawable()).getBitmap();
         }
         startActivity(intent);
     }

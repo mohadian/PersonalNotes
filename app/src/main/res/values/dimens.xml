@@ -12,5 +12,7 @@
     <dimen name="menu_padding">10dp</dimen>
     <dimen name="list_text_size">15sp</dimen>
     <dimen name="secondary_text">20sp</dimen>
+    <integer name="round_corner">10</integer>
+    <integer name="round_corner_margin">10</integer>
 
 </resources>

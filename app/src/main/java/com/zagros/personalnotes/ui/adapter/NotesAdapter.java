@@ -3,6 +3,7 @@ package com.zagros.personalnotes.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.zagros.personalnotes.R;
 import com.zagros.personalnotes.data.model.Note;
 import com.zagros.personalnotes.utils.AppConstant;
 import com.zagros.personalnotes.widgets.NoteCustomList;
+import com.zagros.personalnotes.widgets.RoundedCornersTransformation;
 
 import java.util.Collections;
 import java.util.List;
@@ -61,10 +64,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteHolder> 
         holder.mDate.setText(mNotes.get(position).getDate() + " " + mNotes.get(position).getTime());
 
         // Display an image, but only if we have one to display.
-//        if (mNotes.get(position).getBitmap() != null) {
-//            holder.mImage.setImageBitmap(mNotes.get(position).getBitmap());
-//            holder.mImage.setVisibility(View.VISIBLE);
-//        } else
+        String imagePath = mNotes.get(position).getImagePath();
+        if (!TextUtils.isEmpty(imagePath) || !imagePath.equals(AppConstant.NO_IMAGE)) {
+            Glide.with(mContext).load(imagePath)
+                    .bitmapTransform(new RoundedCornersTransformation(mContext, mContext.getResources().getInteger(R.integer.round_corner), mContext.getResources().getInteger(R.integer.round_corner_margin)))
+
+                    .into(holder.mImage);
+            holder.mImage.setVisibility(View.VISIBLE);
+        }
         if (mNotes.get(position).getImagePath() == null || mNotes.get(position).getImagePath().equals(AppConstant.NO_IMAGE)) {
             // No image, so hide.
             holder.mImage.setVisibility(View.GONE);
