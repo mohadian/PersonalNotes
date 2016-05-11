@@ -44,13 +44,13 @@ public class AppAuthenticationActivity extends BaseActivity {
         TextView dropLabel = (TextView) findViewById(R.id.label_drop_box);
         TextView googleLabel = (TextView) findViewById(R.id.label_google_drive);
         if (AppSharedPreferences.isGoogleDriveAuthenticated(getApplicationContext()))
-            googleLabel.setText(AppConstant.STORING_AT + AppSharedPreferences.getGoogleDriveUploadPath(getApplicationContext()));
+            googleLabel.setText(getString(R.string.storing_at, AppSharedPreferences.getGoogleDriveUploadPath(getApplicationContext())));
         else
-            googleLabel.setText(AppConstant.AUTH_MESSAGE);
+            googleLabel.setText(getString(R.string.auth_message));
         if (AppSharedPreferences.isDropBoxAuthenticated(getApplicationContext()))
-            dropLabel.setText(AppConstant.STORING_AT + getDirNameFromFullPath());
+            dropLabel.setText(getString(R.string.storing_at, getDirNameFromFullPath()));
         else
-            dropLabel.setText(AppConstant.AUTH_MESSAGE);
+            dropLabel.setText(getString(R.string.auth_message));
         LinearLayout dropTick = (LinearLayout) findViewById(R.id.tick_drop_box);
         LinearLayout googleTick = (LinearLayout) findViewById(R.id.tick_google_drive);
         if (AppSharedPreferences.getUploadPreference(getApplicationContext()) == AppConstant.DROP_BOX_SELECTION) {
