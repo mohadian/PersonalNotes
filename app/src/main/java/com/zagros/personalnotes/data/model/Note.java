@@ -118,7 +118,7 @@ public class Note {
         mId = id;
     }
 
-    public boolean isHasNoImage() {
+    public boolean hasNoImage() {
         return mHasNoImage;
     }
 
