@@ -14,6 +14,7 @@ import android.support.v4.app.LoaderManager;
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -85,7 +86,7 @@ public class NotesActivity extends BaseActivity implements
 
     private void setUpForDropbox() {
         AndroidAuthSession session = DropBoxActions.buildSession(getApplicationContext());
-        mDropboxAPI = new DropboxAPI<AndroidAuthSession>(session);
+        mDropboxAPI = new DropboxAPI<>(session);
     }
 
 
@@ -113,15 +114,14 @@ public class NotesActivity extends BaseActivity implements
                 inflater.inflate(R.menu.action_notes, popupMenu.getMenu());
                 popupMenu.show();
                 final View v = view;
-                final int pos = position;
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getItemId() == R.id.action_delete) {
                             moveToTrash();
-                            delete(v, pos);
+                            delete(v, position);
                         } else if (item.getItemId() == R.id.action_archive) {
-                            moveToArchive(v, pos);
+                            moveToArchive(v, position);
                         } else if (item.getItemId() == R.id.action_edit) {
                             edit(v);
                         }
@@ -258,7 +258,7 @@ public class NotesActivity extends BaseActivity implements
                         fos = new FileOutputStream(cachePath);
 
                     } catch (FileNotFoundException e) {
-                        return getResources().getDrawable(R.drawable.ic_image_deleted);
+                        return ContextCompat.getDrawable(this, R.drawable.ic_image_deleted);
                     }
                     mApi.getThumbnail(path, fos, DropboxAPI.ThumbSize.BESTFIT_960x640,
                             DropboxAPI.ThumbFormat.JPEG, null);
@@ -271,7 +271,7 @@ public class NotesActivity extends BaseActivity implements
                 mIsImageNotFound = true;
             }
 
-            drawable = getResources().getDrawable(R.drawable.ic_loading);
+            drawable = ContextCompat.getDrawable(this, R.drawable.ic_loading);
             return drawable;
         }
     }
@@ -282,7 +282,7 @@ public class NotesActivity extends BaseActivity implements
             noItemTextView.setVisibility(View.GONE);
             mRecyclerView.setVisibility(View.VISIBLE);
         } else {
-            noItemTextView.setText(AppConstant.EMPTY);
+            noItemTextView.setText(R.string.empty);
             noItemTextView.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
         }

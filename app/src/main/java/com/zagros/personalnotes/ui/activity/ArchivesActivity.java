@@ -117,7 +117,7 @@ public class ArchivesActivity extends BaseActivity
             mRecyclerView.setVisibility(View.VISIBLE);
         } else {
             TextView noItemTV = (TextView) findViewById(R.id.no_item_textview);
-            noItemTV.setText(AppConstant.NO_ARCHIVES);
+            noItemTV.setText(R.string.no_archives);
             noItemTV.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
         }

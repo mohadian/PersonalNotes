@@ -48,7 +48,7 @@ public class DropBoxPickerActivity extends BaseActivity
             authenticate();
         } else {
             AndroidAuthSession session = DropBoxActions.buildSession(getApplicationContext());
-            mApi = new DropboxAPI<AndroidAuthSession>(session);
+            mApi = new DropboxAPI<>(session);
             initProgressDialog();
             new DropBoxDirectoryListenerAsync(getApplicationContext(), mApi,
                     getCurrentPath(), DropBoxPickerActivity.this).execute();
@@ -100,7 +100,7 @@ public class DropBoxPickerActivity extends BaseActivity
             public void onClick(View v) {
                 AppSharedPreferences.storeDropBoxUploadPath(getApplicationContext(), getCurrentPath());
                 AppSharedPreferences.setPersonalNotesPreference(getApplicationContext(), AppConstant.DROP_BOX_SELECTION);
-                showToast(AppConstant.IMAGE_LOCATION_SAVED_DROPBOX);
+                showToast(R.string.image_location_saved_dropbox);
                 actAsNote();
                 startActivity(new Intent(DropBoxPickerActivity.this, NotesActivity.class));
 
@@ -166,7 +166,7 @@ public class DropBoxPickerActivity extends BaseActivity
 
     private void authenticate() {
         AndroidAuthSession session = DropBoxActions.buildSession(getApplicationContext());
-        mApi = new DropboxAPI<AndroidAuthSession>(session);
+        mApi = new DropboxAPI<>(session);
         mApi.getSession().startOAuth2Authentication(DropBoxPickerActivity.this);
         mAfterAuth = true;
         AppSharedPreferences.setPersonalNotesPreference(getApplicationContext(), AppConstant.DROP_BOX_SELECTION);

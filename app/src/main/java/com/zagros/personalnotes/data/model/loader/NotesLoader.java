@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.support.v4.content.AsyncTaskLoader;
 
+import com.zagros.personalnotes.R;
 import com.zagros.personalnotes.contract.NotesContract;
 import com.zagros.personalnotes.data.model.Note;
 import com.zagros.personalnotes.ui.activity.BaseActivity;
@@ -53,6 +54,7 @@ public class NotesLoader extends AsyncTaskLoader<List<Note>> {
                     String imagePath = mCursor.getString(mCursor.getColumnIndex(NotesContract.NotesColumns.NOTES_IMAGE));
                     int imageSelection = mCursor.getInt(mCursor.getColumnIndex(NotesContract.NotesColumns.NOTES_IMAGE_STORAGE_SELECTION));
                     int _id = mCursor.getInt(mCursor.getColumnIndex(BaseColumns._ID));
+                    String noTime = getContext().getString(R.string.no_time);
                     if(mType == BaseActivity.NOTES) {
                         if(time.equals(AppConstant.NO_TIME)) {
                             time = "";

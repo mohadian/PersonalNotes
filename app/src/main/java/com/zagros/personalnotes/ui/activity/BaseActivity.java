@@ -2,6 +2,7 @@ package com.zagros.personalnotes.ui.activity;
 
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -30,10 +31,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     public static final int TRASH = 4;
     public static final int SETTINGS = 5;
 
-    private Class mNextActivity;
-
     // Default toolbar title (can change)
-    public static String mTitle = AppConstant.NOTES;
+    public static int mTitle = R.string.notes;
 
     // Default type of operation
     public static int mType = NOTES;
@@ -48,12 +47,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void actAsReminder() {
         mType = REMINDERS;
-        mTitle = AppConstant.REMINDERS;
+        mTitle = R.string.reminders;
     }
 
     public static void actAsNote() {
         mType = NOTES;
-        mTitle = AppConstant.NOTES;
+        mTitle = R.string.notes;
     }
 
     protected void setUpActions() {
@@ -95,19 +94,22 @@ public abstract class BaseActivity extends AppCompatActivity {
             mToolBar = (Toolbar) findViewById(R.id.app_bar);
             if (mToolBar != null) {
                 setSupportActionBar(mToolBar);
-                switch (mType) {
-                    case REMINDERS:
-                        getSupportActionBar().setTitle(AppConstant.REMINDERS);
-                        break;
-                    case NOTES:
-                        getSupportActionBar().setTitle(AppConstant.NOTES);
-                        break;
-                    case ARCHIVES:
-                        getSupportActionBar().setTitle(AppConstant.ARCHIVES);
-                        break;
-                    case TRASH:
-                        getSupportActionBar().setTitle(AppConstant.TRASH);
-                        break;
+                ActionBar actionBar = getSupportActionBar();
+                if (actionBar != null) {
+                    switch (mType) {
+                        case REMINDERS:
+                            actionBar.setTitle(R.string.reminders);
+                            break;
+                        case NOTES:
+                            actionBar.setTitle(R.string.notes);
+                            break;
+                        case ARCHIVES:
+                            actionBar.setTitle(R.string.archives);
+                            break;
+                        case TRASH:
+                            actionBar.setTitle(R.string.trash);
+                            break;
+                    }
                 }
             }
         }
@@ -119,11 +121,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (mToolBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             if (mType == REMINDERS)
-                getSupportActionBar().setTitle(AppConstant.MAKE_REMINDER);
+                getSupportActionBar().setTitle(R.string.activity_make_reminder);
             else if (mType == NOTES)
-                getSupportActionBar().setTitle(AppConstant.MAKE_NOTES);
+                getSupportActionBar().setTitle(R.string.activity_make_notes);
             else if (mType == SETTINGS)
-                getSupportActionBar().setTitle(AppConstant.SETTINGS);
+                getSupportActionBar().setTitle(R.string.settings);
         }
         return mToolBar;
     }
@@ -140,12 +142,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         //Few items, so added manually
 
         List<NavigationDrawerItem> items = new ArrayList<>();
-        items.add(new NavigationDrawerItem(R.drawable.ic_playlist_check_white_36dp, AppConstant.DRAWER_NOTES));
-        items.add(new NavigationDrawerItem(R.drawable.ic_alarm_multiple_white_36dp, AppConstant.DRAWER_REMINDERS));
-        items.add(new NavigationDrawerItem(R.drawable.ic_archive_white_36dp, AppConstant.DRAWER_ARCHIVES));
-        items.add(new NavigationDrawerItem(R.drawable.ic_delete_forever_white_36dp, AppConstant.DRAWER_TRASH));
-        items.add(new NavigationDrawerItem(R.drawable.ic_settings_white_36dp, AppConstant.DRAWER_SETTINGS));
-        items.add(new NavigationDrawerItem(R.drawable.ic_help_circle_outline_white_36dp, AppConstant.DRAWER_HELP_AND_FEEDBACK));
+        items.add(new NavigationDrawerItem(R.drawable.ic_playlist_check_white_36dp, R.string.drawer_notes));
+        items.add(new NavigationDrawerItem(R.drawable.ic_alarm_multiple_white_36dp, R.string.drawer_reminders));
+        items.add(new NavigationDrawerItem(R.drawable.ic_archive_white_36dp, R.string.drawer_archives));
+        items.add(new NavigationDrawerItem(R.drawable.ic_delete_forever_white_36dp, R.string.drawer_trash));
+        items.add(new NavigationDrawerItem(R.drawable.ic_settings_white_36dp, R.string.drawer_trash));
+        items.add(new NavigationDrawerItem(R.drawable.ic_help_circle_outline_white_36dp, R.string.drawer_help_and_feedback));
 
         //initialize the drawer fragment
         mDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
@@ -159,36 +161,38 @@ public abstract class BaseActivity extends AppCompatActivity {
         navigationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final Class nextActivity;
+
                 switch (position) {
                     case 0:
-                        mNextActivity = NotesActivity.class;
+                        nextActivity = NotesActivity.class;
                         actAsNote();
                         break;
                     case 1:
-                        mNextActivity = NotesActivity.class;
+                        nextActivity = NotesActivity.class;
                         actAsReminder();
                         break;
                     case 2:
-                        mNextActivity = ArchivesActivity.class;
+                        nextActivity = ArchivesActivity.class;
                         mType = ARCHIVES;
                         break;
                     case 3:
-                        mNextActivity = TrashActivity.class;
+                        nextActivity = TrashActivity.class;
                         mType = TRASH;
                         break;
                     case 4:
-                        mNextActivity = AppAuthenticationActivity.class;
+                        nextActivity = AppAuthenticationActivity.class;
                         mType = SETTINGS;
                         break;
                     case 5:
-                        mNextActivity = HelpFeedActivity.class;
+                        nextActivity = HelpFeedActivity.class;
                         break;
                     default:
-                        mNextActivity = HelpFeedActivity.class;
+                        nextActivity = HelpFeedActivity.class;
                 }
 
                 AppSharedPreferences.setUserLearned(getApplicationContext(), AppConstant.KEY_USER_LEARNED_DRAWER, AppConstant.TRUE);
-                Intent intent = new Intent(BaseActivity.this, mNextActivity);
+                Intent intent = new Intent(BaseActivity.this, nextActivity);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivityForResult(intent, 0);
                 overridePendingTransition(0, 0);
@@ -197,7 +201,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
     }
 
+    protected void showToast(int message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
+
     protected void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
+
 }

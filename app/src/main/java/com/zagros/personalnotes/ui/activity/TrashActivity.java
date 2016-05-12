@@ -92,7 +92,7 @@ public class TrashActivity extends BaseActivity implements
             mRecyclerView.setVisibility(View.VISIBLE);
         } else {
             TextView noItemTV = (TextView) findViewById(R.id.no_item_textview);
-            noItemTV.setText(AppConstant.NO_ARCHIVES);
+            noItemTV.setText(R.string.no_trash);
             noItemTV.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
         }
@@ -127,7 +127,7 @@ public class TrashActivity extends BaseActivity implements
             new AppDatabase(getApplicationContext()).emptyTrash();
             mTrashAdapter.setData(new ArrayList<Trash>());
             mTrashAdapter.notifyDataSetChanged();
-            showToast(AppConstant.EMPTY_TRASH);
+            showToast(R.string.empty_trash);
             return true;
         }
         return super.onOptionsItemSelected(item);

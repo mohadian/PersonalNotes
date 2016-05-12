@@ -189,7 +189,7 @@ public class NoteDetailActivity extends BaseActivity
     }
 
     private void setValues(Note note) {
-        getSupportActionBar().setTitle(AppConstant.REMINDERS);
+        getSupportActionBar().setTitle(R.string.reminders);
         String title = note.getTitle();
         String description = note.getDescription();
         String time = note.getTime();
@@ -399,7 +399,7 @@ public class NoteDetailActivity extends BaseActivity
                 session.finishAuthentication();
                 DropBoxActions.storeAuth(session, getApplicationContext());
             } catch (IllegalStateException e) {
-                showToast(AppConstant.AUTH_ERROR_DROPBOX + e.getLocalizedMessage());
+                showToast(getString(R.string.auth_error_dropbox, e.getLocalizedMessage()));
             }
         }
 
@@ -491,7 +491,7 @@ public class NoteDetailActivity extends BaseActivity
                     }
                     moveToArchive(mIsList);
                     mType = ARCHIVES;
-                    mTitle = AppConstant.ARCHIVES;
+                    mTitle = R.string.archives;
                     startActivity(new Intent(NoteDetailActivity.this, ArchivesActivity.class));
                     finish();
                 }
@@ -524,7 +524,7 @@ public class NoteDetailActivity extends BaseActivity
         }
 
         values.put(ArchivesContract.ArchivesColumns.ARCHIVES_TYPE, type);
-        values.put(ArchivesContract.ArchivesColumns.ARCHIVES_CATEGORY, AppConstant.REMINDERS);
+        values.put(ArchivesContract.ArchivesColumns.ARCHIVES_CATEGORY, getString(R.string.archives));
 
         ContentResolver cr = getContentResolver();
         Uri uri = Uri.parse(AppConstant.BASE_CONTENT_URI + "/archives");
@@ -599,7 +599,7 @@ public class NoteDetailActivity extends BaseActivity
                     session.finishAuthentication();
                     DropBoxActions.storeAuth(session, getApplicationContext());
                 } catch (IllegalStateException e) {
-                    showToast(AppConstant.AUTH_ERROR_DROPBOX + e.getLocalizedMessage());
+                    showToast(getString(R.string.auth_error_dropbox, e.getLocalizedMessage()));
                 }
             }
         }

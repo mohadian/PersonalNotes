@@ -2,9 +2,9 @@ package com.zagros.personalnotes.data.model;
 
 public class NavigationDrawerItem {
     private int iconId;
-    private String title;
+    private int title;
 
-    public NavigationDrawerItem(int iconId, String title) {
+    public NavigationDrawerItem(int iconId, int title) {
         this.iconId = iconId;
         this.title = title;
     }
@@ -13,7 +13,7 @@ public class NavigationDrawerItem {
         return iconId;
     }
 
-    public String getTitle() {
+    public int getTitle() {
         return title;
     }
 }

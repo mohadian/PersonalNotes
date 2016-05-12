@@ -2,10 +2,12 @@ package com.zagros.personalnotes.utils.dropbox;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.exception.DropboxException;
+import com.zagros.personalnotes.R;
 import com.zagros.personalnotes.utils.AppConstant;
 
 public class DropBoxDirectoryCreatorAsync extends AsyncTask<Void, Long, Boolean> {
@@ -28,10 +30,10 @@ public class DropBoxDirectoryCreatorAsync extends AsyncTask<Void, Long, Boolean>
     protected Boolean doInBackground(Void... params) {
         try {
             mApi.createFolder(mPath);
-            mMessage = AppConstant.FOLDER_CREATED;
+            mMessage = mContext.getString(R.string.folder_created);
 
         } catch (DropboxException e) {
-            mMessage = AppConstant.FOLDER_CREATE_ERROR;
+            mMessage = mContext.getString(R.string.folder_create_error);
         }
 
         return true;
