@@ -1,4 +1,4 @@
-package com.zagros.personalnotes.data;
+package com.zagros.personalnotes.data.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import com.zagros.personalnotes.contract.ArchivesContract;
 import com.zagros.personalnotes.contract.NotesContract;
 import com.zagros.personalnotes.contract.TrashContract;
+import com.zagros.personalnotes.data.AppDatabase;
 import com.zagros.personalnotes.utils.AppConstant;
 
 public class AppProvider extends ContentProvider {
@@ -58,7 +59,7 @@ public class AppProvider extends ContentProvider {
     @Override
     public String getType(Uri uri) {
         final int match = sUriMatcher.match(uri);
-        switch(match) {
+        switch (match) {
             case NOTES:
                 return NotesContract.Notes.CONTENT_TYPE;
             case NOTES_ID:
@@ -83,7 +84,7 @@ public class AppProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
-        switch(match) {
+        switch (match) {
             case NOTES:
                 queryBuilder.setTables(AppDatabase.Tables.NOTES);
                 break;
@@ -123,15 +124,15 @@ public class AppProvider extends ContentProvider {
             case NOTES:
                 long noteRecordId = db.insertOrThrow(AppDatabase.Tables.NOTES, null, values);
                 return NotesContract.Notes.buildNoteUri(String.valueOf(noteRecordId));
-            
+
             case ARCHIVES:
                 long archiveRecordId = db.insertOrThrow(AppDatabase.Tables.ARCHIVES, null, values);
                 return ArchivesContract.Archives.buildArchiveUri(String.valueOf(archiveRecordId));
-            
+
             case TRASH:
                 long trashRecordId = db.insertOrThrow(AppDatabase.Tables.TRASH, null, values);
                 return TrashContract.Trash.buildTrashUri(String.valueOf(trashRecordId));
-            
+
             default:
                 throw new IllegalArgumentException("Unknown Uri: " + uri);
         }
@@ -146,13 +147,13 @@ public class AppProvider extends ContentProvider {
         switch (match) {
             case NOTES:
                 return db.update(AppDatabase.Tables.NOTES, values, selection, selectionArgs);
-            
+
             case NOTES_ID:
                 String noteId = NotesContract.Notes.getNoteId(uri);
                 selectionCriteria = BaseColumns._ID + "=" + noteId
                         + (!TextUtils.isEmpty(selection) ? " AND ( " + selection + ")" : "");
                 return db.update(AppDatabase.Tables.NOTES, values, selectionCriteria, selectionArgs);
-            
+
             case ARCHIVES:
                 return db.update(AppDatabase.Tables.ARCHIVES, values, selection, selectionArgs);
 
@@ -161,7 +162,7 @@ public class AppProvider extends ContentProvider {
                 selectionCriteria = BaseColumns._ID + "=" + archiveId
                         + (!TextUtils.isEmpty(selection) ? " AND ( " + selection + ")" : "");
                 return db.update(AppDatabase.Tables.ARCHIVES, values, selectionCriteria, selectionArgs);
-            
+
             case TRASH:
                 return db.update(AppDatabase.Tables.TRASH, values, selection, selectionArgs);
 
