@@ -1,4 +1,4 @@
-package com.zagros.personalnotes.data.model.loader;
+package com.zagros.personalnotes.data.loader;
 
 import android.content.ContentResolver;
 import android.content.Context;

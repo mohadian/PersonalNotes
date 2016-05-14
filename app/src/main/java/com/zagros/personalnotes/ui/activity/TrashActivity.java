@@ -18,7 +18,7 @@ import com.zagros.personalnotes.R;
 import com.zagros.personalnotes.data.contract.TrashContract;
 import com.zagros.personalnotes.data.AppDatabase;
 import com.zagros.personalnotes.data.model.Trash;
-import com.zagros.personalnotes.data.model.loader.TrashLoader;
+import com.zagros.personalnotes.data.loader.TrashLoader;
 import com.zagros.personalnotes.ui.adapter.TrashAdapter;
 import com.zagros.personalnotes.ui.listener.RecyclerItemClickListener;
 

@@ -43,7 +43,7 @@ import com.zagros.personalnotes.data.contract.ArchivesContract;
 import com.zagros.personalnotes.data.contract.NotesContract;
 import com.zagros.personalnotes.data.contract.TrashContract;
 import com.zagros.personalnotes.data.model.Note;
-import com.zagros.personalnotes.data.model.loader.NotesLoader;
+import com.zagros.personalnotes.data.loader.NotesLoader;
 import com.zagros.personalnotes.ui.adapter.NotesAdapter;
 import com.zagros.personalnotes.ui.listener.RecyclerItemClickListener;
 import com.zagros.personalnotes.utils.AppConstant;

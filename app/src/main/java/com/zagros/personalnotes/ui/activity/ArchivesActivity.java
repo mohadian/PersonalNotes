@@ -18,7 +18,7 @@ import com.zagros.personalnotes.R;
 import com.zagros.personalnotes.data.contract.ArchivesContract;
 import com.zagros.personalnotes.data.contract.TrashContract;
 import com.zagros.personalnotes.data.model.Archive;
-import com.zagros.personalnotes.data.model.loader.ArchivesLoader;
+import com.zagros.personalnotes.data.loader.ArchivesLoader;
 import com.zagros.personalnotes.ui.adapter.ArchivesAdapter;
 import com.zagros.personalnotes.ui.listener.RecyclerItemClickListener;
 
@@ -129,8 +129,4 @@ public class ArchivesActivity extends BaseActivity
         mArchivesAdapter.delete(position);
         changeNoItemTag();
     }
-
-
-
-
 }
