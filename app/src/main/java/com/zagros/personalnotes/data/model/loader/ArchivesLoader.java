@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.support.v4.content.AsyncTaskLoader;
 
-import com.zagros.personalnotes.contract.ArchivesContract;
+import com.zagros.personalnotes.data.contract.ArchivesContract;
 import com.zagros.personalnotes.data.model.Archive;
 
 import java.util.ArrayList;

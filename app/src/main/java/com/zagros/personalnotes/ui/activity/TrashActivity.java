@@ -15,13 +15,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.zagros.personalnotes.R;
-import com.zagros.personalnotes.contract.TrashContract;
+import com.zagros.personalnotes.data.contract.TrashContract;
 import com.zagros.personalnotes.data.AppDatabase;
 import com.zagros.personalnotes.data.model.Trash;
 import com.zagros.personalnotes.data.model.loader.TrashLoader;
 import com.zagros.personalnotes.ui.adapter.TrashAdapter;
 import com.zagros.personalnotes.ui.listener.RecyclerItemClickListener;
-import com.zagros.personalnotes.utils.AppConstant;
 
 import java.util.ArrayList;
 import java.util.List;

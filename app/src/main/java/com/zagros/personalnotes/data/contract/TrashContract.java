@@ -1,9 +1,8 @@
-package com.zagros.personalnotes.contract;
+package com.zagros.personalnotes.data.contract;
 
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-import com.google.api.services.drive.model.App;
 import com.zagros.personalnotes.utils.AppConstant;
 
 public class TrashContract {

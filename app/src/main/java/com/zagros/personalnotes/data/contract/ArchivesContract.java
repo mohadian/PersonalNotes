@@ -1,4 +1,4 @@
-package com.zagros.personalnotes.contract;
+package com.zagros.personalnotes.data.contract;
 
 import android.net.Uri;
 import android.provider.BaseColumns;

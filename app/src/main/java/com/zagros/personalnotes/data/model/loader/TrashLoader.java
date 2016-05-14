@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.support.v4.content.AsyncTaskLoader;
 
-import com.zagros.personalnotes.contract.TrashContract;
+import com.zagros.personalnotes.data.contract.TrashContract;
 import com.zagros.personalnotes.data.model.Trash;
 
 import java.util.ArrayList;

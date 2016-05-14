@@ -5,9 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
-import com.zagros.personalnotes.contract.ArchivesContract;
-import com.zagros.personalnotes.contract.NotesContract;
-import com.zagros.personalnotes.contract.TrashContract;
+import com.zagros.personalnotes.data.contract.ArchivesContract;
+import com.zagros.personalnotes.data.contract.NotesContract;
+import com.zagros.personalnotes.data.contract.TrashContract;
 import com.zagros.personalnotes.utils.AppConstant;
 
 public class AppDatabase extends SQLiteOpenHelper {

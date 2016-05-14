@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 import android.support.v4.content.AsyncTaskLoader;
 
 import com.zagros.personalnotes.R;
-import com.zagros.personalnotes.contract.NotesContract;
+import com.zagros.personalnotes.data.contract.NotesContract;
 import com.zagros.personalnotes.data.model.Note;
 import com.zagros.personalnotes.ui.activity.BaseActivity;
 import com.zagros.personalnotes.utils.AppConstant;

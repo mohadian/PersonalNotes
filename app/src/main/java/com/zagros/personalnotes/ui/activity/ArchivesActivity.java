@@ -15,13 +15,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.zagros.personalnotes.R;
-import com.zagros.personalnotes.contract.ArchivesContract;
-import com.zagros.personalnotes.contract.TrashContract;
+import com.zagros.personalnotes.data.contract.ArchivesContract;
+import com.zagros.personalnotes.data.contract.TrashContract;
 import com.zagros.personalnotes.data.model.Archive;
 import com.zagros.personalnotes.data.model.loader.ArchivesLoader;
 import com.zagros.personalnotes.ui.adapter.ArchivesAdapter;
 import com.zagros.personalnotes.ui.listener.RecyclerItemClickListener;
-import com.zagros.personalnotes.utils.AppConstant;
 
 import java.util.ArrayList;
 import java.util.List;

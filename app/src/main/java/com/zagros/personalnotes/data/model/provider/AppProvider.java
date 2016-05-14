@@ -10,9 +10,9 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 
-import com.zagros.personalnotes.contract.ArchivesContract;
-import com.zagros.personalnotes.contract.NotesContract;
-import com.zagros.personalnotes.contract.TrashContract;
+import com.zagros.personalnotes.data.contract.ArchivesContract;
+import com.zagros.personalnotes.data.contract.NotesContract;
+import com.zagros.personalnotes.data.contract.TrashContract;
 import com.zagros.personalnotes.data.AppDatabase;
 import com.zagros.personalnotes.utils.AppConstant;
 
