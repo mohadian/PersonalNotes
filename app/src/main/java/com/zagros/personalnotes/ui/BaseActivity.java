@@ -1,4 +1,4 @@
-package com.zagros.personalnotes.ui.activity;
+package com.zagros.personalnotes.ui;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -16,8 +16,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.zagros.personalnotes.R;
-import com.zagros.personalnotes.ui.adapter.NavigationDrawerAdapter;
 import com.zagros.personalnotes.data.model.NavigationDrawerItem;
+import com.zagros.personalnotes.ui.activity.AppAuthenticationActivity;
+import com.zagros.personalnotes.ui.activity.ArchivesActivity;
+import com.zagros.personalnotes.ui.activity.HelpFeedActivity;
+import com.zagros.personalnotes.ui.activity.NoteDetailActivity;
+import com.zagros.personalnotes.ui.activity.NotesActivity;
+import com.zagros.personalnotes.ui.activity.TrashActivity;
+import com.zagros.personalnotes.ui.adapter.NavigationDrawerAdapter;
 import com.zagros.personalnotes.utils.AppConstant;
 import com.zagros.personalnotes.utils.AppSharedPreferences;
 import com.zagros.personalnotes.widgets.NavigationDrawerFragment;
