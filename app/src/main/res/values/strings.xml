@@ -69,5 +69,15 @@
     <string name="empty">EMPTY</string>
     <string name="empty_trash">Trash Empty</string>
     <string name="no_time">No Time</string>
+    <string name="placeholder_lorem_ipsum" />
+    <!-- String used to wrap navigation item descriptions for a11y users to indicate the user
+         interface element is a menu item. -->
+    <string name="navdrawer_menu_item_a11y_wrapper">%1$s  menu item</string>
 
+    <!-- String used to wrap navigation item descriptions for a11y users to indicate the user
+         interface element is a menu item. This string indicates a selected menu item -->
+    <string name="navdrawer_selected_menu_item_a11y_wrapper">%1$s selected menu item</string>
+    <!-- Accessibility description for navigation drawer -->
+    <string name="navdrawer_description_a11y">Navigation Drawer used to switch between major
+        features of the application</string>
 </resources>

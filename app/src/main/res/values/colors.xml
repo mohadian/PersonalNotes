@@ -15,4 +15,7 @@
     <color name="notesDropBoxSeparator">#C1C1C1</color>
     <color name="notesSelectionTickColor">#455EDE</color>
     <color name="notesImageBackground">#CECECE</color>
+    <color name="navdrawer_text_color_selected">@color/notesPrimaryBackgroundColor</color>
+    <color name="navdrawer_text_color">@color/notesSecondaryTextColor</color>
+    <color name="navdrawer_selected_item_background">#1a000000</color>
 </resources>
