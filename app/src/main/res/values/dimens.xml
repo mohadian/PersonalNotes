@@ -17,8 +17,20 @@
     <dimen name="swipe_refresh_progress_bar_end_margin">16dp</dimen>
     <dimen name="navdrawer_item_icon_margin_end">32dp</dimen>
     <dimen name="padding_normal">16dp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
 
     <integer name="round_corner">10</integer>
     <integer name="round_corner_margin">10</integer>
+
+    <dimen name="fab_elevation">8dp</dimen>
+    <dimen name="fab_press_translation_z">6dp</dimen>
+    <dimen name="headerbar_elevation">4dp</dimen>
+    <dimen name="session_detail_max_header_elevation">@dimen/headerbar_elevation</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="element_spacing_normal">8dp</dimen>
+    <dimen name="content_padding_dialog">12dp</dimen>
+
+    <dimen name="navdrawer_item_icon_size">24dp</dimen>
+
 
 </resources>

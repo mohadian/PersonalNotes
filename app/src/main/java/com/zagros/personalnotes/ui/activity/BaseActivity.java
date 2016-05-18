@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.zagros.personalnotes.R;
+import com.zagros.personalnotes.about.AboutActivity;
 import com.zagros.personalnotes.ui.adapter.NavigationDrawerAdapter;
 import com.zagros.personalnotes.data.model.NavigationDrawerItem;
 import com.zagros.personalnotes.utils.AppConstant;
@@ -33,6 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public static final int ARCHIVES = 3;
     public static final int TRASH = 4;
     public static final int SETTINGS = 5;
+    public static final int ABOUT = 6;
 
     // Default toolbar title (can change)
     public static int mTitle = R.string.notes;
@@ -168,6 +170,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         items.add(new NavigationDrawerItem(R.drawable.ic_delete_forever_white_36dp, R.string.drawer_trash));
         items.add(new NavigationDrawerItem(R.drawable.ic_settings_white_36dp, R.string.drawer_trash));
         items.add(new NavigationDrawerItem(R.drawable.ic_help_circle_outline_white_36dp, R.string.drawer_help_and_feedback));
+        items.add(new NavigationDrawerItem(R.drawable.ic_help_circle_outline_white_36dp, R.string.about));
 
         //initialize the drawer fragment
         mDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
@@ -206,6 +209,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                         break;
                     case 5:
                         nextActivity = HelpFeedActivity.class;
+                        break;
+                    case 6:
+                        nextActivity = AboutActivity.class;
                         break;
                     default:
                         nextActivity = HelpFeedActivity.class;

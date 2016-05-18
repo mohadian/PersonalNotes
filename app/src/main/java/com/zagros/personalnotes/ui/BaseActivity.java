@@ -16,6 +16,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
@@ -40,8 +41,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     public static final int NAVDRAWER_ITEM_ARCHIVES = 3;
     public static final int NAVDRAWER_ITEM_TRASH = 4;
     public static final int NAVDRAWER_ITEM_SETTINGS = 5;
-    public static final int NAVDRAWER_ITEM_DEBUG = 6;
+    public static final int NAVDRAWER_ITEM_ABOUT = 6;
+    public static final int NAVDRAWER_ITEM_DEBUG = 7;
     public static final int NAVDRAWER_ITEM_INVALID = -1;
+    private static final String TAG = BaseActivity.class.getSimpleName();
 
     // Default toolbar title (can change)
     public static int mTitle = R.string.notes;
@@ -73,7 +76,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             R.string.drawer_archives,
             R.string.drawer_trash,
             R.string.drawer_trash,
-            R.string.drawer_help_and_feedback
+            R.string.drawer_help_and_feedback,
+            R.string.about
     };
 
     // icons for navdrawer items (indices must correspond to above array)
@@ -149,6 +153,22 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         mThemedStatusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark);
         mNormalStatusBarColor = mThemedStatusBarColor;
+    }
+
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        setupNavDrawer();
+        updateSwipeRefreshProgressBarTop();
+
+        View mainContent = findViewById(R.id.main_content);
+        if (mainContent != null) {
+            mainContent.setAlpha(0);
+            mainContent.animate().alpha(1).setDuration(MAIN_CONTENT_FADEIN_DURATION);
+        } else {
+            Log.w(TAG, "No view with ID main_content to fade in.");
+        }
     }
 
     protected void setProgressBarTopWhenActionBarShown(int progressBarTopWhenActionBarShown) {
@@ -347,6 +367,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mNavDrawerItems.add(NAVDRAWER_ITEM_ARCHIVES);
         mNavDrawerItems.add(NAVDRAWER_ITEM_TRASH);
         mNavDrawerItems.add(NAVDRAWER_ITEM_SETTINGS);
+        mNavDrawerItems.add(NAVDRAWER_ITEM_ABOUT);
         // Debug menu only on debug builds.
         if (BuildConfig.DEBUG) {
             mNavDrawerItems.add(NAVDRAWER_ITEM_DEBUG);

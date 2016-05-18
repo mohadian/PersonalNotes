@@ -28,8 +28,6 @@ public interface QueryEnum {
     int getId();
 
     /**
-     * @return the projection for the query. The fields in the projection are defined in
-     * the {@link com.google.samples.apps.iosched.provider.ScheduleContract}
      */
     String[] getProjection();
 

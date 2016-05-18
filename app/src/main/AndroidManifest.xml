@@ -49,6 +49,10 @@
         </activity>
 
         <activity
+            android:name=".about.AboutActivity"
+            android:label="@string/about"></activity>
+
+        <activity
             android:name=".ui.activity.GoogleDriveSelectionActivity"
             android:label="@string/title_activity_list_files">
         </activity>

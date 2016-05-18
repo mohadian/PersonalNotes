@@ -13,15 +13,6 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-
-<com.zagros.personalnotes.ui.widget.NavDrawerItemView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="?android:listPreferredItemHeightSmall"
-    android:gravity="start|center_vertical"
-    android:paddingLeft="@dimen/padding_normal"
-    android:paddingRight="@dimen/padding_normal"
-    android:background="@drawable/navdrawer_item_background"
-    android:foreground="?android:selectableItemBackground"
-    app:iconTints="@color/navdrawer_item_icon" />
+<resources>
+    <item name="header_shadow" type="drawable">@drawable/bottom_shadow</item>
+</resources>

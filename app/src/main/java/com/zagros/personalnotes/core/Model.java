@@ -10,15 +10,6 @@ import android.support.v4.content.Loader;
  * A Model is a class used to manipulate stored data, as well as provide getters for the data. It
  * provides the {@link Presenter} with an interface through which to load and update the data (MVP
  * architectural pattern).
- * <p/>
- * Typically, a Model loads its initial data using at least one {@link QueryEnum}. The Model
- * obtains the data from the {@link com.google.samples.apps.iosched.provider.ScheduleProvider} by
- * creating a {@link android.content.CursorLoader} and then parsing the received
- * {@link android.database.Cursor}.
- * <p/>
- * Additionally, when a {@link UserActionEnum} is received, the model updates both its own data and
- * the stored data by making an update or insert call on the
- * {@link com.google.samples.apps.iosched.provider.ScheduleProvider}.
  */
 public interface Model {
 
